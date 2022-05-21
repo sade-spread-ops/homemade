@@ -1,8 +1,11 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 
 const NavBar = () => (
   <div className="navbar">
-    <h1>Nav Component</h1>
+    <Typography variant='h4'>
+        ---- Nav Bar ----
+    </Typography>
   </div>
 );
 

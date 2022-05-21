@@ -14,10 +14,9 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
-const PORT = 8701;
+const port = process.env.PORT || 8000;
 const server = http.createServer(app);
-server.listen(PORT, () => {
+server.listen(port, () => {
   console.log(`
-  Server listening on 
-  http://localhost:${PORT}`);
+  Server listening on :${port}`);
 });
