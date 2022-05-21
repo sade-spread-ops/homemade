@@ -10,8 +10,4 @@ sequelize.authenticate()
   .then(() => console.log('Connection Worked'))
   .catch((err) => console.log('Error:', err));
 
-const User = sequelize.define('User', {
-
-})
-
 module.exports = sequelize;
