@@ -20,6 +20,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
+
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
@@ -33,10 +34,9 @@ function(accessToken, refreshToken, profile, cb) {
 ));
 
 
-const PORT = 8701;
+const port = 8701;
 const server = http.createServer(app);
-server.listen(PORT, () => {
+server.listen(port, () => {
   console.log(`
-  Server listening on 
-  http://localhost:${PORT}`);
+  Server listening on :${port}`);
 });
