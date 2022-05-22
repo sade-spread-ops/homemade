@@ -9,11 +9,11 @@ const ejs = require('ejs');
 
 const app = express();
 
-
+//CONFIGURATION STRATEGY
 passport.use(new FacebookStrategy({
   clientID: process.env.CLIENT_ID_HOMEMADE,
   clientSecret: process.env.CLIENT_SECRET_FB,
-  callbackURL: `http://localhost:${port}/auth/facebook/homemade`
+  callbackURL: `https://localhost:${port}/auth/facebook/homemade`
 },
 
 function(accessToken, refreshToken, profile, cb) {
@@ -26,6 +26,7 @@ function(accessToken, refreshToken, profile, cb) {
 }
 ));
 
+//AUTHENTICATE REQUEST
 app.get('/auth/facebook',
   passport.authenticate('facebook')); 
 
