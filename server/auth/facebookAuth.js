@@ -18,7 +18,9 @@ passport.use(new FacebookStrategy({
 
 function(accessToken, refreshToken, profile, cb) {
 //be sure to use facebookId from schema once Raymond includes it
-  User.findOrCreate({ facebookId: profile.id}, function (err, user) {
+//since we are using sequeize, I think the user needs to be defined in the pool?
+  //User.findOrCreate({ where: { facebookId: profile.id }})
+  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
     return cb(err, user);
   });
 }
