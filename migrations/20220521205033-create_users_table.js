@@ -9,6 +9,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
+      facebookId: Sequelize.STRING(255),
       email: Sequelize.STRING(50),
       phone: Sequelize.STRING(11),
       password: Sequelize.STRING(20),
