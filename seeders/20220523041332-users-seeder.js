@@ -3,9 +3,9 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     const users = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       users.push({
-        id: i++,
+        id: i,
         email: `foobar${i}@gmail.com`,
         phone: `5049${i}65555`,
         firstName: 'Foo',
