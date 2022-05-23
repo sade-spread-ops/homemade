@@ -22,9 +22,9 @@ app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 
 
-const port = 8701;
+const port = 8000;
 const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`
-  Server listening on :${port}`);
+  ✨ Server listening on :${port}`);
 });
