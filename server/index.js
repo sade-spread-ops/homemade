@@ -26,9 +26,5 @@ const port = 8000;
 const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`
-  Server listening on :${port}`);
+  ✨ Server listening on :${port}`);
 });
-
-module.exports = {
-  port
-};

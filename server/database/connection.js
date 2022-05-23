@@ -2,11 +2,11 @@ const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('homemade', 'root', '', {
   host: '127.0.0.1',
-  dialect: 'mysql'
+  dialect: 'mysql',
 });
 
 sequelize.authenticate()
-  .then(() => console.log('Connection Worked'))
+  .then(() => console.log(' 🚀 Database Connected!'))
   .catch((err) => console.log('Error:', err));
 
 module.exports = sequelize;
