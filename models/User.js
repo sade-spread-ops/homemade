@@ -11,7 +11,10 @@ const User = sequelize.define('User', {
     autoIncrement: true,
     primaryKey: true
   },
-  facebookId: Sequelize.STRING(255),
+  googleId: { 
+    type: Sequelize.STRING(255), 
+    unique: true
+  },
   email: Sequelize.STRING(50),
   phone: Sequelize.STRING(11),
   password: Sequelize.STRING(20),
@@ -24,3 +27,5 @@ const User = sequelize.define('User', {
   location: Sequelize.STRING(100),
   imageURL: Sequelize.STRING(255)
 });
+
+module.exports = User;
