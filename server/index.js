@@ -49,7 +49,7 @@ app.get('/auth/google',
 
 app.get('/google/callback', 
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:8000/',
+    successRedirect: process.env.CLIENT_URL,
     failureRedirect: '/auth/failure'
   })
 );
@@ -65,7 +65,7 @@ app.get('/protected', isLoggedIn, (req, res) => {
 
 // https://www.passportjs.org/concepts/authentication/logout/
 app.get('/logout', (req, res) => {
-  req.logout(() => res.redirect('http://localhost:8000/'));
+  req.logout(() => res.redirect(process.env.CLIENT_URL));
 });
 //************************************************************** */
 

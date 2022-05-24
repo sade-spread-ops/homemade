@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
+import Map from './Map.jsx';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
+import { CLIENT_URL } from '../config/keys.js';
 
 
 const App = () => {
@@ -20,26 +22,28 @@ const App = () => {
       };
       axios(options)
         .then((res) => {
-          if (res.status === 200) {
-            return res;
-          }
+          if (res.status === 200) { return res; }
         })
-        .then((resObj) => {
-          console.log(resObj);
-          setUser(resObj.data.firstName);
+        .then(({ data }) => { // <-- data = userObject
+          console.log(data);
+          setUser(data);
         })
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
-    // console.log(user);
+    console.log(user);
   }, []);
+  
   return (
     <div className='welcome'>
-      <Typography variant='h6' align='center'>Hello { user ? user.name : '🦔 friend 🦔' }</Typography>
+      <Typography variant='h6' align='center'>{ user ? user.name : 'Hello 🦔 friend 🦔' }</Typography>
       { user 
-        ? <a href={ 'localhost:8000/logout' }>
-          <button>Logout</button></a> 
-        : <Typography align='center' ><a href={ 'http://localhost:8000/auth/google' }>
+        ? <div>
+          <Navbar />
+          <Map />
+        </div>
+
+        : <Typography align='center' ><a href={ `${CLIENT_URL}}/auth/google` }>
           <Button variant="contained" color="primary" size='large' >
             Login with Google
           </Button></a></Typography>
