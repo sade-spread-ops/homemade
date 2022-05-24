@@ -3,9 +3,7 @@ const http = require('http');
 const helmet = require('helmet');
 const path = require('path');
 const morgan = require('morgan');
-const FacebookStrategy = require('passport-facebook').Strategy;
 const passport = require('passport');
-const { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET } = require('dotenv');
 
 const app = express();
 
