@@ -7,6 +7,8 @@ const App = () => (
     <Typography variant='h1'>
       App Component
     </Typography>
+    
+
   </div>
 );
 
