@@ -20,9 +20,9 @@ app.use(express.static(DIST_DIR));
 //'http://127.0.0.1.8000/auth/google/messages'?
 router.get('http://127.0.0.1:8000/', (req, res) => {
   //trying to use User model to access all of the User's messages. There is no Messages column in the User table however
-  // UserMessage.findAll({where: {
-  //   userId:   //the id of the user submitting the get request
-  // }});
+  UserMessage.findAll({where: {
+    userId:   //the id of the user submitting the get request
+  }});
 
 });
 
