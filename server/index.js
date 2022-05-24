@@ -5,16 +5,11 @@ const helmet = require('helmet');
 const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport');
-
+require('dotenv').config();
 require('./passport'); 
 
-// auth middleware
-const isLoggedIn = (req, res, next) => {
-  req.user ? next() : res.sendStatus(401);
-};
-
 const app = express();
-app.use(session({secret: 'cats'})); // change to env variable 
+app.use(session({secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: true})); // change to env variable 
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -24,12 +19,27 @@ require('./database/connection');
 // security - XSS protection and remove default headers
 app.use(helmet());
 // logs http req in terminal
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
-app.get('/', (req, res) => {
+//**************************************************************** */
+//*     __AUTH ROUTES__
+const isLoggedIn = (req, res, next) => {
+  req.user ? next() : res.sendStatus(401);
+};
+app.get('/auth/success', (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      message: 'success',
+      success: true,
+      user: req.user
+    });
+  }
+});
+
+app.get('/auth', (req, res) => {
   res.send('<a href="/auth/google">Authenticate with Google</a>');
 });
 
@@ -39,32 +49,30 @@ app.get('/auth/google',
 
 app.get('/google/callback', 
   passport.authenticate('google', {
-    successRedirect: '/protected',
+    successRedirect: 'http://localhost:8000/',
     failureRedirect: '/auth/failure'
   })
 );
 
 app.get('/auth/failure', (req, res) => {
-  res.send('Something went wrong...');
+  res.send('Something went wrong...<a href="/auth/google"> Please try again</a>');
 });
 
 app.get('/protected', isLoggedIn, (req, res) => {
-  console.log(req.user, '******');
-  res.send(`Hello ${req.user[0].firstName}`);
+  console.log(req.user);
+  res.send(req.user[0]);
 });
-
 
 // https://www.passportjs.org/concepts/authentication/logout/
 app.get('/logout', (req, res) => {
-  req.logout(err => err && next(err));
-  res.send('Goodbye!');
+  req.logout(() => res.redirect('http://localhost:8000/'));
 });
+//************************************************************** */
 
 
-
-const port = 8000;
+const port = process.env.PORT || 8000;
 const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`
-  ✨ Server listening on :${port}`);
+  ✨ Server listening on :${process.env.PORT || port}`);
 });

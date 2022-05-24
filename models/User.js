@@ -11,7 +11,10 @@ const User = sequelize.define('User', {
     autoIncrement: true,
     primaryKey: true
   },
-  googleId: Sequelize.STRING(255),
+  googleId: { 
+    type: Sequelize.STRING(255), 
+    unique: true
+  },
   email: Sequelize.STRING(50),
   phone: Sequelize.STRING(11),
   password: Sequelize.STRING(20),
