@@ -41,6 +41,7 @@ const App = () => {
         ? <div>
           <Navbar />
           <Map />
+          <TinderCards />
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}}/auth/google` }>
