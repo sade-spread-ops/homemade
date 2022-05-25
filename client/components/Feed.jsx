@@ -8,11 +8,8 @@ import User from '../../models/User';
 //     {
 //       name: 'person 1',
 
-//     },
-//     {  
-//       name: 'Jeff Bezos',
-
 //     }
+
 //   ]);
 //   return (
 //     <div className="tinderCards">
