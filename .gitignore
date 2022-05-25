@@ -5,3 +5,5 @@ client/dist/bundles.js
 client/dist/bundles.js.map
 client/config/keys.js
 package-lock.json
+client/dist/vendors-node_modules_mapbox-gl_dist_mapbox-gl_js.bundles.js
+client/dist/vendors-node_modules_mapbox-gl_dist_mapbox-gl_js.bundles.js.map

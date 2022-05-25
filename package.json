@@ -5,7 +5,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "webpack-dev-server --progress --hot --open"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,8 @@
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.13.0",
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
@@ -54,5 +56,6 @@
     "react-map-gl": "^7.0.13",
     "react-router-dom": "^6.3.0",
     "sequelize": "^6.19.2"
+    
   }
 }
