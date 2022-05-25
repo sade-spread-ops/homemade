@@ -16,10 +16,10 @@ module.exports = {
         lessor: i % 2 !== 0
       });
     }
-    return queryInterface.bulkInsert('users', users);
+    return queryInterface.bulkInsert('Users', users);
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('users', {}, null);
+    return queryInterface.bulkDelete('Users', {}, null);
   }
 };
