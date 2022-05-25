@@ -31,6 +31,7 @@ const App = () => {
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
+    console.log(user);
   }, []);
   
   return (
@@ -42,7 +43,7 @@ const App = () => {
           <Map />
         </div>
 
-        : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
+        : <Typography align='center' ><a href={ `${CLIENT_URL}}/auth/google` }>
           <Button variant="contained" color="primary" size='large' >
             Login with Google
           </Button></a></Typography>
