@@ -17,7 +17,7 @@ function(request, accessToken, refreshToken, profile, done) {
     googleId: profile.id,
     email: profile.emails[0].value,
     firstName: profile.given_name,
-
+    
   }})
     .then((user) => {
       done(null, user);
