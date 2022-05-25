@@ -15,10 +15,9 @@ function(request, accessToken, refreshToken, profile, done) {
   console.log(profile);
   User.findOrCreate({ where: {
     googleId: profile.id,
-    email: profile.email,
+    email: profile.emails[0].value,
     firstName: profile.given_name,
-    lastName: profile.family_name,
-    imageUrl: profile.picture
+    
   }})
     .then((user) => {
       done(null, user);

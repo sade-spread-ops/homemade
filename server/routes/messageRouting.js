@@ -3,10 +3,9 @@ const sequelize = require('sequelize');
 const http = require('http');
 const axios = require('axios');
 const router = require('express').Router;
-const User = require('../models/User');
-//const { Message } = require('@mui/icons-material');
-const UserMessage = require('../models/UserMessage');
-const Message = require('../models/Message');
+const User = require('../../models/User');
+const UserMessage = require('../../models/UserMessage');
+const Message = require('../../models/Message');
 
 
 //FIGURE OUT HOW TO CONNECT TO SEQUELIZE DATABASE TO BEGIN MAKING REQUESTS
@@ -26,16 +25,16 @@ router.get('/messages', (req, res) => {
   //trying to use User model to access all of the User's messages. There is no Messages column in the User table however
   //first thing we gotta do is console.log the req
   //console.log(req);
-  UserMessage.findAll({where: {}//returns a promise that resolves to an array of instances
-  })
-    .then(({ data }) => {
-      console.log(data);
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+  // UserMessage.findAll({where: {}//returns a promise that resolves to an array of instances
+  // })
+  //   .then(({ data }) => {
+  //     console.log(data);
+  //     res.sendStatus(200);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //     res.sendStatus(500);
+  //   });
 
 });
 
@@ -44,32 +43,32 @@ router.get('/messages', (req, res) => {
 
 router.get('/messages:id', (req, res) => {
   //console.log(req.params);
-  Message.findOne({ attributes: ['message', 'timeSent', 'recepientId'],
-    where: {}})
-    .then((data) => {
-      console.log(data);
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+  // Message.findOne({ attributes: ['message', 'timeSent', 'recepientId'],
+  //   where: {}})
+  //   .then((data) => {
+  //     console.log(data);
+  //     res.sendStatus(200);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //     res.sendStatus(500);
+  //   });
 });
 
 //USER SHOULD BE ABLE TO WRITE A MESSAGE TO ANOTHER USER IF THEY HAVE MATCHED. POST REQUEST
 
 router.post('/messages', (req, res) => {
   //create new message by first accessing the right message object from database
-  console.log(req); 
-  //https://sequelize.org/docs/v6/core-concepts/model-instances/
-  Message.build({})
-    .then((data) => {
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.sendStatus(500);
-    });
+  // console.log(req); 
+  // //https://sequelize.org/docs/v6/core-concepts/model-instances/
+  // Message.build({})
+  //   .then((data) => {
+  //     res.sendStatus(201);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //     res.sendStatus(500);
+  //   });
 });
 
 
@@ -78,15 +77,15 @@ router.post('/messages', (req, res) => {
 
 router.delete('/messages/:id', (req, res) => {
   //console.log(req.params);
-  Message.destroy({where: {
+  // Message.destroy({where: {
 
-  }})
-    .then((data) => {
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+  // }})
+  //   .then((data) => {
+  //     res.sendStatus(200);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //     res.sendStatus(500);
+  //   });
 });
 

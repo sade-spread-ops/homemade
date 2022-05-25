@@ -16,8 +16,6 @@ app.use(passport.session());
 // DB Connection
 require('./database/connection');
 
-// security - XSS protection and remove default headers
-app.use(helmet());
 // logs http req in terminal
 app.use(morgan('dev'));
 
