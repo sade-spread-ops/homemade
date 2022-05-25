@@ -5,11 +5,11 @@ module.exports = {
     return queryInterface.createTable('user_matches', {
       userId: {
         type: Sequelize.INTEGER(11),
-        primaryKey: true
+        references: { model: 'Users', key: 'id' }
       },
       matchId: {
         type: Sequelize.INTEGER(11),
-        primaryKey: true
+        references: { model: 'matches', key: 'id' }
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
