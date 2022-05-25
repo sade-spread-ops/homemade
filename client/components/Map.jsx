@@ -17,6 +17,7 @@ const Map = () => {
   });
 
   return <ReactMapGL
+    
     id="map"
     {...viewState}
     onMove={evt => setViewState(evt.viewState)}
@@ -24,6 +25,7 @@ const Map = () => {
     mapStyle="mapbox://styles/mapbox/dark-v10"
     mapboxAccessToken={MAPBOX_TOKEN}
   >
+    <Marker longitude={-90.140} latitude={29.966} color="red" />
     <Marker longitude={-90.154} latitude={29.966} color="red" />
   </ReactMapGL>;
   
