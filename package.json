@@ -5,7 +5,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "webpack-dev-server --progress --hot --open"
   },
   "repository": {
     "type": "git",
@@ -26,25 +27,33 @@
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
+    "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.13.0",
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
     "@mui/styles": "^5.8.0",
+    "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-session": "^1.17.3",
     "helmet": "^5.1.0",
+    "mapbox-gl": "^2.0.0",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
     "passport": "^0.6.0",
-    "passport-facebook": "^3.0.0",
+    "passport-google-oauth2": "^0.2.0",
     "path": "^0.12.7",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-map-gl": "^7.0.13",
+    "react-router-dom": "^6.3.0",
     "sequelize": "^6.19.2"
+    
   }
 }
