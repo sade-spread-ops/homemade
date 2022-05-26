@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
-import Messages from './Messages.jsx';
+import Map from './Map.jsx';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
 import { CLIENT_URL } from '../config/keys.js';
@@ -42,8 +42,8 @@ const App = () => {
       { user 
         ? <div>
           <Navbar />
-          {/* <Map /> */}
-          <Profile user={user}/>
+          <Map user={user}/>
+          {/* <Profile user={user}/> */}
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
