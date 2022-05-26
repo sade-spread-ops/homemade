@@ -17,7 +17,7 @@ app.use(passport.session());
 // DB Connection
 require('./database/connection');
 
-// logs http req in terminal
+//middleware
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
@@ -25,9 +25,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use('/users', router);
+app.use('/listings', require('./routes/map'));
 
-//**************************************************************** */
-//*     __AUTH ROUTES__
+
+//**********************__AUTH ROUTES__*************************** */
+
 const isLoggedIn = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);
 };
@@ -61,7 +63,7 @@ app.get('/auth/failure', (req, res) => {
 });
 
 app.get('/protected', isLoggedIn, (req, res) => {
-  console.log(req.user);
+  // console.log(req.user);
   res.send(req.user[0]);
 });
 
@@ -70,6 +72,8 @@ app.get('/logout', (req, res) => {
   req.logout(() => res.redirect(process.env.CLIENT_URL));
 });
 //************************************************************** */
+
+
 
 const port = process.env.PORT || 8000;
 const server = http.createServer(app);
