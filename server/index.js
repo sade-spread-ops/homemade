@@ -26,7 +26,7 @@ app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use('/users', router);
 app.use('/listings', require('./routes/map'));
-
+app.use('/coords', require('./routes/map.helper'));
 
 //**********************__AUTH ROUTES__*************************** */
 
