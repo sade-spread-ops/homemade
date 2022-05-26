@@ -5,6 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport');
+const { router } = require('./routes/users.js');
 require('dotenv').config();
 require('./passport'); 
 
@@ -22,6 +23,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
+app.use('/users', router);
 
 //**************************************************************** */
 //*     __AUTH ROUTES__
@@ -67,39 +70,6 @@ app.get('/logout', (req, res) => {
   req.logout(() => res.redirect(process.env.CLIENT_URL));
 });
 //************************************************************** */
-
-const Users = require('../models/User');
-app.get('/users', (req, res) => {
-  // console.log(req, res);
-  Users.findAll().then((data) => {
-    console.log(data);
-    res.status(200).send(data);
-  })
-    .catch((error) => {
-      console.error(error);
-      res.sendStatus(500);
-    });
-});
-
-app.post('/users', (req, res) => {
-  const { user } = req.body;
-  Users.create(user)
-    .then(() => {
-      console.log(req.body);
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      console.log(req.body);
-      console.error(error);
-      res.sendStatus(500);
-    });
-});
-
-
-// // const Users = require('../models/User');
-// const usersRouter = require('./routes/users');
-// app.use('/users', usersRouter);
-
 
 const port = process.env.PORT || 8000;
 const server = http.createServer(app);
