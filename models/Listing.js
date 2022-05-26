@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../server/database/connection');
 
-const Listing = sequelize.define('Listing', {
+const Listing = sequelize.define('listing', {
   id: {
     type: Sequelize.INTEGER(11),
     allowNull: false,
@@ -20,3 +20,5 @@ const Listing = sequelize.define('Listing', {
   address: Sequelize.STRING(255),
   price: Sequelize.FLOAT
 });
+
+module.exports = Listing;

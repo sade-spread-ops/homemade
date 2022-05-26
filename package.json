@@ -6,7 +6,9 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack",
-    "dev": "webpack-dev-server --progress --hot --open"
+    "dev": "webpack-dev-server --progress --hot --open",
+    "db:reset": "sequelize db:drop && sequelize db:create && sequelize db:migrate",
+    "db:seed": "sequelize db:seed --seed 20220523041332-users-seeder.js && sequelize db:seed --seed 20220525162512-listing-seeder.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
     "@mui/material": "^5.8.0",
     "@mui/styles": "^5.8.0",
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
@@ -58,6 +61,5 @@
     "react-map-gl": "^7.0.13",
     "react-router-dom": "^6.3.0",
     "sequelize": "^6.19.2"
-    
   }
 }
