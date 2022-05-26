@@ -25,12 +25,13 @@ const App = () => {
           if (res.status === 200) { return res; }
         })
         .then(({ data }) => { // <-- data = userObject
-          console.log(data);
+          console.log(data, '&&&&&&&&');
           setUser(data);
         })
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
+    // console.log(user, '****');
   }, []);
   
   return (

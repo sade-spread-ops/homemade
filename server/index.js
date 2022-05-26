@@ -68,6 +68,32 @@ app.get('/logout', (req, res) => {
 });
 //************************************************************** */
 
+const Users = require('../models/User');
+app.get('/users', (req, res) => {
+  // console.log(req, res);
+  Users.findAll().then((data) => {
+    console.log(data);
+    res.status(200).send(data);
+  })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+});
+
+app.post('/users', (req, res) => {
+  const { user } = req.body;
+  Users.create(user)
+    .then(() => {
+      console.log(req.body);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(req.body);
+      console.error(error);
+      res.sendStatus(500);
+    });
+});
 
 
 // // const Users = require('../models/User');
