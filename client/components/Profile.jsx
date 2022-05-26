@@ -48,7 +48,7 @@ const Profile = (props) => {
         </br>
         <label for="imageURL">Image URL</label>
         <input id="imageURL" type="url" onChange={(event) => setImageURL(event.target.value)}></input><br></br>
-        <button onClick={() => sendUpdatedProfile()}>Create Profile</button>
+        <button onClick={() => sendUpdatedProfile()}>Edit Profile</button>
       </form>
     </div>
   );
