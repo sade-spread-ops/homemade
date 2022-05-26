@@ -1,8 +1,7 @@
 const express = require ('express');
 const router = express.Router();
 const db = require ('../database/connection.js');
-const { User } = require('../../models/User.js');
-const sequelize = require('sequelize');
+const Users = require('');
 
 router.put('/', (req, res) => {
   console.log('This line ran', req.body);
