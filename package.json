@@ -38,6 +38,7 @@
     "@mui/material": "^5.8.0",
     "@mui/styles": "^5.8.0",
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
@@ -54,6 +55,5 @@
     "react-map-gl": "^7.0.13",
     "react-router-dom": "^6.3.0",
     "sequelize": "^6.19.2"
-    
   }
 }

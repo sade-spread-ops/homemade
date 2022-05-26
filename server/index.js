@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const http = require('http');
-const helmet = require('helmet');
+const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport');
@@ -18,8 +18,9 @@ require('./database/connection');
 
 // logs http req in terminal
 app.use(morgan('dev'));
-
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 //**************************************************************** */
@@ -66,6 +67,12 @@ app.get('/logout', (req, res) => {
   req.logout(() => res.redirect(process.env.CLIENT_URL));
 });
 //************************************************************** */
+
+
+
+// // const Users = require('../models/User');
+// const usersRouter = require('./routes/users');
+// app.use('/users', usersRouter);
 
 
 const port = process.env.PORT || 8000;
