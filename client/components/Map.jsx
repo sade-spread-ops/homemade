@@ -14,7 +14,7 @@ const Map = (props) => {
   const [longitude, setLongitude] = useState(-90);
   const [latitude, setLatitude] = useState(29);
   const [listingsArr, setListingsArr] = useState();
-  console.log(props.user.id);
+  // console.log(props.user.id);
 
   const createNewListing = () => {
     axios.post('http://localhost:8000/listings', {
@@ -23,19 +23,19 @@ const Map = (props) => {
       latitude: latitude
     });
   };
-  // useEffect(() => {
 
-  const getAllListings = () => {
-    axios.get('http://localhost:8000/listings')
-      .then(listingsArr => {
-        // console.log(listingsArr.data);
-        setListingsArr(listingsArr.data);
-      })
-      .catch(err => console.error(err));
-  };
-  getAllListings();
-  // }, []);
-  console.log(listingsArr, 'ln38');
+  useEffect(() => {
+    const getAllListings = () => {
+      axios.get('http://localhost:8000/listings')
+        .then(listingsArr => {
+          console.log(listingsArr.data);
+          setListingsArr(listingsArr.data);
+        })
+        .catch(err => console.error(err));
+    };
+    getAllListings();
+  }, []);
+  // console.log(listingsArr, 'ln38');
 
   
   return ( 
@@ -50,6 +50,11 @@ const Map = (props) => {
       >
         <Marker longitude={-90.156} latitude={29.966} color="red" />
         <Marker longitude={-90.15} latitude={29.966} color="red" />
+        { !listingsArr ? <div> </div> :
+          listingsArr.map((listing, i) => (
+            <Marker longitude={listing.longitude} latitude={listing.latitude} color="blue" key={i}/>
+          ))
+        }
       </ReactMapGL>
       <div className="add-listing">
         
