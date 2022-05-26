@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport');
+const { router } = require('./routes/users.js');
 require('dotenv').config();
 require('./passport'); 
 
@@ -21,6 +22,8 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
+app.use('/users', router);
 
 //**************************************************************** */
 //*     __AUTH ROUTES__

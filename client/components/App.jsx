@@ -4,6 +4,7 @@ import Map from './Map.jsx';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
 import { CLIENT_URL } from '../config/keys.js';
+import Profile from './Profile.jsx';
 
 
 const App = () => {
@@ -40,10 +41,11 @@ const App = () => {
       { user 
         ? <div>
           <Navbar />
-          <Map />
+          {/* <Map /> */}
+          <Profile user={user}/>
         </div>
 
-        : <Typography align='center' ><a href={ `${CLIENT_URL}}/auth/google` }>
+        : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
           <Button variant="contained" color="primary" size='large' >
             Login with Google
           </Button></a></Typography>

@@ -1,7 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const sequelize = require('sequelize');
-const User = require('../models/User');
+const { User } = require('../models/User');
 require('dotenv').config();
 
 
