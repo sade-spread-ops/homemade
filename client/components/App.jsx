@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
-import Map from './Map.jsx';
+import Messages from './Messages.jsx';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
 import { CLIENT_URL } from '../config/keys.js';
 import Profile from './Profile.jsx';
+
 
 
 const App = () => {
