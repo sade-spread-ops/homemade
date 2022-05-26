@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const Profile = (props) => {
   const [phone, setPhone] = useState('');
-  const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState(props.user.firstName);
   const [lastName, setLastName] = useState('');
   const [age, setAge] = useState(18);
   const [gender, setGender] = useState('');
@@ -33,8 +33,8 @@ const Profile = (props) => {
       <form>
         <label for="phone">Phone Number</label>
         <input id="phone" type="text" onChange={(event) => setPhone(event.target.value)}></input><br></br>
-        <label for="firstName" defaultValue={props.user.firstName}>First Name</label>
-        <input id="firstName" type="text" onChange={(event) => setFirstName(event.target.value)}></input><br></br>
+        <label for="firstName">First Name</label>
+        <input id="firstName" type="text" defaultValue={props.user.firstName} onChange={(event) => setFirstName(event.target.value)}></input><br></br>
         <label for="lastName">Last Name</label>
         <input id="lastName" type="text" onChange={(event) => setLastName(event.target.value)} required></input><br></br>
         <label for="age">Age</label>
