@@ -25,10 +25,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use('/users', router);
+app.use('/feed', require('./routes/feed.js'));
 app.use('/listings', require('./routes/map'));
 
 
 //**********************__AUTH ROUTES__*************************** */
+
 
 const isLoggedIn = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);
