@@ -9,14 +9,11 @@ router.get('/', (req, res) =>
   User.findAll({
     where: {
       lessee: true
-    },
-    attributes: { 
-      exclude: ['phone', 'email'] 
     }
   })
     .then(users => {
       console.log('users on 18', users);
-      res.sendStatus(200);
+      res.status(200).send(users);
     })
     .catch(err => console.log(err)));
 

@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use('/users', router);
-
+app.use('/feed', require('./routes/feed.js'));
 //**************************************************************** */
 //*     __AUTH ROUTES__
 const isLoggedIn = (req, res, next) => {

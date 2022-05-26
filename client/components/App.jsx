@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Button, Typography } from '@mui/material';
 import { CLIENT_URL } from '../config/keys.js';
 import Profile from './Profile.jsx';
-
+import Feed from './Feed.jsx';
 
 
 const App = () => {
@@ -42,8 +42,7 @@ const App = () => {
       { user 
         ? <div>
           <Navbar />
-          {/* <Map /> */}
-          <Profile user={user}/>
+          <Map />
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>

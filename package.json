@@ -58,6 +58,5 @@
     "react-map-gl": "^7.0.13",
     "react-router-dom": "^6.3.0",
     "sequelize": "^6.19.2"
-    
   }
 }
