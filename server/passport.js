@@ -12,7 +12,7 @@ passport.use(new GoogleStrategy({
   passReqToCallback: true
 },
 function(request, accessToken, refreshToken, profile, done) {
-  console.log(profile);
+  // console.log(profile);
   User.findOrCreate({ where: {
     googleId: profile.id,
     email: profile.emails[0].value,
