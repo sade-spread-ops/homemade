@@ -4,7 +4,7 @@ const axios = require('axios');
 import Lessee from './Lessee.jsx';
 
 
-const Feed = () => {
+const Feed = (props) => {
   const [lessees, setLessees] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:8000/feed')
@@ -17,11 +17,13 @@ const Feed = () => {
       });
   }, []);
 
-
+  const removeLessee = (email) => {
+    setLessees(lessees.filter(lessee => lessee.email !== email));
+  };
   return (
     <div>
       { lessees.map((lessee) => 
-        <Lessee lessee={lessee}/>
+        <Lessee lessee={lessee} removeLessee={removeLessee} user={props.user}/>
       ) }
     </div>
   );
