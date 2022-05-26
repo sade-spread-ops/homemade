@@ -6,7 +6,9 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack",
-    "dev": "webpack-dev-server --progress --hot --open"
+    "dev": "webpack-dev-server --progress --hot --open",
+    "db:reset": "sequelize db:drop && sequelize db:create && sequelize db:migrate",
+    "db:seed": "sequelize db:seed --seed 20220523041332-users-seeder.js && sequelize db:seed --seed 20220525162512-listing-seeder.js"
   },
   "repository": {
     "type": "git",
