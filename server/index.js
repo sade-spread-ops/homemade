@@ -67,6 +67,18 @@ app.get('/logout', (req, res) => {
 });
 //************************************************************** */
 
+const Users = require('../models/User');
+app.get('/users', (req, res) => {
+  // console.log(req, res);
+  Users.findAll().then((data) => {
+    console.log(data);
+    res.status(200).send(data);
+  })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+});
 
 const port = process.env.PORT || 8000;
 const server = http.createServer(app);

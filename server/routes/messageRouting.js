@@ -2,10 +2,14 @@ const path = require('path');
 const sequelize = require('sequelize');
 const http = require('http');
 const axios = require('axios');
-const router = require('express').Router;
+//const router = require('express').Router;
 const User = require('../../models/User');
 const UserMessage = require('../../models/UserMessage');
 const Message = require('../../models/Message');
+
+const express = require ('express');
+const router = express.Router();
+const db = require ('../database/connection.js');
 
 
 //FIGURE OUT HOW TO CONNECT TO SEQUELIZE DATABASE TO BEGIN MAKING REQUESTS
@@ -42,17 +46,17 @@ router.get('/messages', (req, res) => {
 //USER SHOULD BE ABLE TO SELECT A SPECIFIC MESSAGE FROM MESSAGES
 
 router.get('/messages:id', (req, res) => {
-  //console.log(req.params);
-  // Message.findOne({ attributes: ['message', 'timeSent', 'recepientId'],
-  //   where: {}})
-  //   .then((data) => {
-  //     console.log(data);
-  //     res.sendStatus(200);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     res.sendStatus(500);
-  //   });
+  console.log(req.params);
+  Message.findOne({ attributes: ['message', 'timeSent', 'recepientId'],
+    where: {}})
+    .then((data) => {
+      console.log(data);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
 });
 
 //USER SHOULD BE ABLE TO WRITE A MESSAGE TO ANOTHER USER IF THEY HAVE MATCHED. POST REQUEST
