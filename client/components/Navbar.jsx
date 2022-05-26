@@ -4,12 +4,13 @@ import { AppBar, Box, Toolbar, IconButton, Typography, Menu,
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 
-const pages = ['Profile', 'Listings', 'Messages', 'Map'];
+const pages = ['Profile', 'Listings', 'Feed', 'Messages', 'Map'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
+    console.log(event.currentTarget);
     setAnchorElNav(event.currentTarget);
   };
   
