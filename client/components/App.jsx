@@ -4,6 +4,7 @@ import Messages from './Messages.jsx';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
 import { CLIENT_URL } from '../config/keys.js';
+import Profile from './Profile.jsx';
 
 
 
@@ -41,7 +42,8 @@ const App = () => {
       { user 
         ? <div>
           <Navbar />
-          <Messages />
+          {/* <Map /> */}
+          <Profile user={user}/>
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
