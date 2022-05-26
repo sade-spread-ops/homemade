@@ -8,6 +8,13 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
+//we need to import all of the models into this file so that we can later import this file into the server and then after 
+//we defined all our models in those files, we call sync. 
+
+//const { Listing } = './Listing.js';
+
+
+
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);

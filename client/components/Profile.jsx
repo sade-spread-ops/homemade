@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 const axios = require('axios');
+import Messages from './Messages.jsx';
 
 const Profile = (props) => {
   const [phone, setPhone] = useState('');
@@ -49,6 +50,8 @@ const Profile = (props) => {
         <label for="imageURL">Image URL</label>
         <input id="imageURL" type="url" onChange={(event) => setImageURL(event.target.value)}></input><br></br>
         <button onClick={() => sendUpdatedProfile()}>Create Profile</button>
+        <Messages />
+        
       </form>
     </div>
   );

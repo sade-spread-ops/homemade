@@ -9,6 +9,9 @@ const { router } = require('./routes/users.js');
 require('dotenv').config();
 require('./passport'); 
 
+const { UserMessage } = require('../models/UserMessage');
+
+
 const app = express();
 app.use(session({secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: true})); // change to env variable 
 app.use(passport.initialize());
@@ -82,6 +85,23 @@ app.get('/logout', (req, res) => {
 //       res.sendStatus(500);
 //     });
 // });
+
+/////////////////////////////MESSAGES ROUTING////////////////////////////
+app.get('/messages/:id', (req, res) => {
+  //console.log(req.params); //params: { id: '13' },
+  UserMessage.findAll({where: { userId: req.params.id }//returns a promise that resolves to an array of instances
+  })
+    .then(({ data }) => {
+      console.log(data);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
+
+
 
 const port = process.env.PORT || 8000;
 const server = http.createServer(app);

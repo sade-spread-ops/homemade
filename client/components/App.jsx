@@ -33,7 +33,7 @@ const App = () => {
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
-    console.log(user);
+    console.log(user);//null
   }, []);
   
   return (
