@@ -33,11 +33,7 @@ const App = () => {
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
-<<<<<<< HEAD
-    console.log(user);//null
-=======
     // console.log(user, '****');
->>>>>>> e137a1ba4036d0af891c2329cf7237dbec77e350
   }, []);
   
   return (
@@ -46,13 +42,8 @@ const App = () => {
       { user 
         ? <div>
           <Navbar />
-<<<<<<< HEAD
-          {/* <Map /> */}
-          <Profile user={user}/>
-=======
           <Map user={user}/>
           {/* <Profile user={user}/> */}
->>>>>>> e137a1ba4036d0af891c2329cf7237dbec77e350
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
