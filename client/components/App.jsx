@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
-import Messages from './Messages.jsx';
+import Map from './Map.jsx';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
 import { CLIENT_URL } from '../config/keys.js';
@@ -27,13 +27,17 @@ const App = () => {
           if (res.status === 200) { return res; }
         })
         .then(({ data }) => { // <-- data = userObject
-          console.log(data);
+          console.log(data, '&&&&&&&&');
           setUser(data);
         })
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
+<<<<<<< HEAD
     console.log(user);//null
+=======
+    // console.log(user, '****');
+>>>>>>> e137a1ba4036d0af891c2329cf7237dbec77e350
   }, []);
   
   return (
@@ -42,8 +46,13 @@ const App = () => {
       { user 
         ? <div>
           <Navbar />
+<<<<<<< HEAD
           {/* <Map /> */}
           <Profile user={user}/>
+=======
+          <Map user={user}/>
+          {/* <Profile user={user}/> */}
+>>>>>>> e137a1ba4036d0af891c2329cf7237dbec77e350
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>

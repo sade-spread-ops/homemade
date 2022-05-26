@@ -1,7 +1,7 @@
 const express = require ('express');
 const router = express.Router();
 const db = require ('../database/connection.js');
-const Users = require('');
+const { User } = require('../../models/User.js');
 
 router.put('/', (req, res) => {
   console.log('This line ran', req.body);
