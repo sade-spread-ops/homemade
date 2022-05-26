@@ -4,7 +4,7 @@ const axios = require('axios');
 import Lessee from './Lessee.jsx';
 
 
-const Feed = () => {
+const Feed = (props) => {
   const [lessees, setLessees] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:8000/feed')
@@ -23,7 +23,7 @@ const Feed = () => {
   return (
     <div>
       { lessees.map((lessee) => 
-        <Lessee lessee={lessee} removeLessee={removeLessee}/>
+        <Lessee lessee={lessee} removeLessee={removeLessee} user={props.user}/>
       ) }
     </div>
   );
