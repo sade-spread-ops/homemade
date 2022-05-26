@@ -35,14 +35,14 @@ const App = () => {
     getUser();
     console.log(user);
   }, []);
-  
+
   return (
     <div className='welcome'>
       <Typography variant='h6' align='center'>{ user ? user.name : 'Hello 🦔 friend 🦔' }</Typography>
-      { user 
+      { user
         ? <div>
           <Navbar />
-          <Map />
+          <Feed user={user}/>
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
