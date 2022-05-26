@@ -33,4 +33,6 @@ const User = sequelize.define('User', {
   imageURL: Sequelize.STRING(255)
 });
 
-module.exports = User;
+module.exports = {
+  User
+};

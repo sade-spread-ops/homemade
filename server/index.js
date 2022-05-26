@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport');
+const { router } = require('./routes/users.js');
 require('dotenv').config();
 require('./passport'); 
 
@@ -21,6 +22,8 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
+app.use('/users', router);
 
 //**************************************************************** */
 //*     __AUTH ROUTES__
@@ -67,18 +70,18 @@ app.get('/logout', (req, res) => {
 });
 //************************************************************** */
 
-const Users = require('../models/User');
-app.get('/users', (req, res) => {
-  // console.log(req, res);
-  Users.findAll().then((data) => {
-    console.log(data);
-    res.status(200).send(data);
-  })
-    .catch((error) => {
-      console.error(error);
-      res.sendStatus(500);
-    });
-});
+// const Users = require('../models/User');
+// app.get('/users', (req, res) => {
+//   // console.log(req, res);
+//   Users.findAll().then((data) => {
+//     console.log(data);
+//     res.status(200).send(data);
+//   })
+//     .catch((error) => {
+//       console.error(error);
+//       res.sendStatus(500);
+//     });
+// });
 
 const port = process.env.PORT || 8000;
 const server = http.createServer(app);
