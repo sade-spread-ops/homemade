@@ -17,11 +17,13 @@ const Feed = () => {
       });
   }, []);
 
-
+  const removeLessee = (email) => {
+    setLessees(lessees.filter(lessee => lessee.email !== email));
+  };
   return (
     <div>
       { lessees.map((lessee) => 
-        <Lessee lessee={lessee}/>
+        <Lessee lessee={lessee} removeLessee={removeLessee}/>
       ) }
     </div>
   );
