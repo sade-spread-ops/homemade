@@ -91,7 +91,7 @@ const Navbar = () => {
                   key={`${page}-${i}`}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
-                  disabled={page === 'Messages' || page === 'Logout'} >
+                  disabled={page === 'Logout'} >
                   {page}
                 </Button>
               </Link>

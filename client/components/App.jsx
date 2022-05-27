@@ -15,6 +15,7 @@ import { CLIENT_URL } from '../config/keys.js';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  
   useEffect(() => {
     const getUser = () => {
       const options = {
@@ -52,12 +53,12 @@ const App = () => {
             <Routes>
               <Route exact path='/' element={<Profile user={user} />} />
               {/* <Profile user={user}/> */}
-              <Route exact path='/feed' element={<Feed/>} />
+              <Route exact path='/feed' element={<Feed user={user}/>} />
               {/* <Feed /> */}
               <Route exact path='/matches' element={<UserMatches user={user}/>} />
               {/* <UserMatches user={user}/> */}
-              <Route exact path='/messages' element={<Messages/>} />
-              {/* <Messages /> */}
+              <Route exact path='/messages' element={<Messages user={user}/>} />
+
               <Route exact path='/map' element={<Map user={user} />} />
               {/* <Map user={user}/> */}
             </Routes>
@@ -67,7 +68,7 @@ const App = () => {
           <Button variant="contained" color="primary" size='large' >
             Login with Google
           </Button></a></Typography>
-      }
+      } 
     </div>
   );
 };

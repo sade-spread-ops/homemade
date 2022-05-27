@@ -1,12 +1,14 @@
 const express = require ('express');
 const messagesRouter = express.Router();
 const db = require ('../database/connection.js');
-const { UserMessage } = require('../../models/UserMessage.js');
-// const { UserMessage } = require('../../models/User.js');
+// const { UserMessage } = require('../../models/UserMessage.js');
+// // const { UserMessage } = require('../../models/User.js');
+const { Message } = require('../../models/Message.js');
+const { resolve } = require('path');
 
 
 //USER SHOULD BE ABLE TO SEE ALL MESSAGES IN THEIR INBOX. THIS WILL BE A GET REQUEST
-//'http://127.0.0.1.8000/auth/google/messages'?
+
 
 // ///user/:id/messages
 
@@ -21,41 +23,33 @@ const { UserMessage } = require('../../models/UserMessage.js');
 // 
 
 
-//
+//WHEN USER CLICKS ON SENDERS NAME, USER WILL BE ABLE TO SEND MESSAGE TO THAT USER
 
-//FIRST WE WILL START WITH POST 
 messagesRouter.post('/', (req, res) => {
-  //console.log('req on 14', req.body);
-  // UserMessage.create({})
-  //   .then(() => {
-  //     res.sendStatus(200);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     res.sendStatus(500);
-  //   });
+  Message.findOne({where: {
+    id: req.body.id
+  }})
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 
-
-messagesRouter.get('/messages', (req, res) => {
-  //trying to use User model to access all of the User's messages. There is no Messages column in the User table however
-  //first thing we gotta do is console.log the req
-  //console.log(req, 'reeeeeeeq');
-
-  
-  res.send('hello');
-  // UserMessage.findAll({where: { userId: req.body.userId }//returns a promise that resolves to an array of instances
-  // })
-  //   .then(({ data }) => {
-  //     console.log(data);
-  //     res.sendStatus(200);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     res.sendStatus(500);
-  //   });
-
+messagesRouter.get('/', (req, res) => {
+  Message.findAll({where: { recipientId: req.query.recipientId }
+  })
+    .then((data) => {
+      //console.log(data[0].dataValues.message);
+      res.status(200);
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
 });
 
 

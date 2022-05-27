@@ -20,9 +20,11 @@ const Match = (props) => {
   } 
   );
 
+  
+
   return (
     <div>
-      <h1>
+      <h1 onClick={()=> {}}>
         {`${match.firstName} ${match.lastName}`}
       </h1>
     </div>
