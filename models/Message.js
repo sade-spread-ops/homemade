@@ -1,5 +1,3 @@
-
-
 const Sequelize = require('sequelize');
 
 const sequelize = require('../server/database/connection');
@@ -15,3 +13,7 @@ const Message = sequelize.define('Message', {
   timeSent: Sequelize.DATE,
   recipientId: Sequelize.INTEGER(11)
 });
+
+
+
+//Does this connect two foreign keys to the same table? userId and recepientId?

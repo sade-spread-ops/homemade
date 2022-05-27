@@ -2,8 +2,8 @@ const express = require ('express');
 const router = express.Router();
 const db = require ('../database/connection.js');
 const { User } = require('../../models/User.js');
-const sequelize = require('sequelize');
 
+//UPDATE A USER
 router.put('/', (req, res) => {
   console.log('This line ran', req.body);
   User.update({
@@ -28,7 +28,19 @@ router.put('/', (req, res) => {
     });
 });
 
+
+//SENDS USER WHOSE EMAIL IS THE SENDER OF THE MATCH
+router.get('/', (req, res) => {
+  User.findOne({ where: { email: req.query.email }})
+    .then((user) => {
+      res.status(200);
+      res.send(user);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+});
+
 module.exports = {
   router,
- 
 }; 
