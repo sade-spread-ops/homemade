@@ -27,6 +27,17 @@ router.put('/', (req, res) => {
     });
 });
 
+
+router.get('/users', (req, res) => {
+  // console.log(req.body, 'req body on 93');
+  console.log(req.params);
+  res.send('hello');
+  // User.findOne({ where: { email: req.params }}).then((user) => {
+  //   res.json(user);
+  // });
+  
+});
+
 module.exports = {
   router
 };

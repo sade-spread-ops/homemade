@@ -3,11 +3,8 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('matches', [{
-      // matchRequestFrom: 
-      // matchRequestTo:
-      // matchRequestSender: 
-      // matchRequestReceiver: 
-      // matchRequestStatus: 
+      matchRequestSender: 'foobar0@gmail.com',
+      matchRequestReceiver: 'foobar1@gmail.com'
     }], {});
   },
 

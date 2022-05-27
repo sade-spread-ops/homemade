@@ -15,3 +15,7 @@ const Match = sequelize.define('Match', {
   matchRequestReceiver: Sequelize.STRING(255),
   matchRequestStatus: Sequelize.INTEGER(11)
 });
+
+module.exports = {
+  Match
+};
