@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useResolvedPath } from 'react-router';
-const axios = require('axios');
+import axios from 'axios';
 import Lessee from './Lessee.jsx';
 
 
@@ -23,7 +23,7 @@ const Feed = (props) => {
   return (
     <div>
       { lessees.map((lessee) => 
-        <Lessee lessee={lessee} removeLessee={removeLessee} user={props.user}/>
+        <Lessee key={lessee.id} lessee={lessee} removeLessee={removeLessee} user={props.user}/>
       ) }
     </div>
   );
@@ -39,7 +39,7 @@ const Feed = (props) => {
 
 
 
-
+ 
 
 
 

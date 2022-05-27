@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-const axios = require('axios');
+import axios from 'axios';
+
+
 
 const Lessee = (props) => {
   const addLessee = () => {
@@ -7,10 +9,10 @@ const Lessee = (props) => {
       matchRequestSender: props.user.email,
       matchRequestReceiver: props.lessee.email
     })
-      .then(() => {
+      .then((results) => {
         console.log('SUCCESSSSS');
       })
-      .catch(err => console.log(err));
+      .catch((err, results) => console.log(err, results));
   };
   return (
     <div>
@@ -27,7 +29,10 @@ const Lessee = (props) => {
       <button onClick={() => props.removeLessee(props.lessee.email)}>
         Decline.
       </button>
-      <button onClick={() => addLessee()}>
+      <button onClick={ () => {
+        addLessee();
+        props.removeLessee(props.lessee.email); 
+      } }>
         Match!
       </button>
       <br></br>
@@ -41,4 +46,4 @@ const Lessee = (props) => {
   );
 };
 
-export default Lessee;
+export default Lessee;  

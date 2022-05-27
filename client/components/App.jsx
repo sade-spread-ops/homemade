@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
-import Map from './Map.jsx';
-import axios from 'axios';
-import { Button, Typography } from '@mui/material';
-import { CLIENT_URL } from '../config/keys.js';
 import Profile from './Profile.jsx';
 import Feed from './Feed.jsx';
 import UserMatches from './UserMatches.jsx';
+import Messages from './Messages.jsx';
+import Map from './Map.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import axios from 'axios';
+import { Button, Typography } from '@mui/material';
+import { CLIENT_URL } from '../config/keys.js';
 
 
 
@@ -42,13 +45,24 @@ const App = () => {
     <div className='welcome'>
       <Typography variant='h6' align='center'>{ user ? user.name : 'Hello 🦔 friend 🦔' }</Typography>
       { user
-        ? <div>
-          <Navbar />
-          {/* <Map user={user}/> */}
-          {/* <Profile user={user}/> */}
-          <UserMatches user={user}/>
-        </div>
-
+        ?
+        <Router>
+          <div>
+            <Navbar />
+            <Routes>
+              <Route exact path='/' element={<Profile user={user} />} />
+              {/* <Profile user={user}/> */}
+              <Route exact path='/feed' element={<Feed/>} />
+              {/* <Feed /> */}
+              <Route exact path='/matches' element={<UserMatches user={user}/>} />
+              {/* <UserMatches user={user}/> */}
+              <Route exact path='/messages' element={<Messages/>} />
+              {/* <Messages /> */}
+              <Route exact path='/map' element={<Map user={user} />} />
+              {/* <Map user={user}/> */}
+            </Routes>
+          </div>
+        </Router>
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
           <Button variant="contained" color="primary" size='large' >
             Login with Google

@@ -1,7 +1,5 @@
-
-const axios = require('axios');
-import React from 'react';
-const { useEffect, useState } = require('react');
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const UserMatches = (props) => {
   const [matches, setMatches] = useState([]);
