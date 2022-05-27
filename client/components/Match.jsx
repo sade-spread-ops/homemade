@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Match = (props) => {
 
@@ -16,12 +16,12 @@ const Match = (props) => {
       });  
   } 
   );
-//     {`${props.match.firstName} ${props.match.lastName}`}
+  //     {`${props.match.firstName} ${props.match.lastName}`}
 
   return (
     <div>
-      <h1>hello</h1>
       
+      {`${props.user.firstName} ${props.user.lastName}`}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-const axios = require('axios');
-import Messages from './Messages.jsx';
+import axios from 'axios';
 
 const Profile = (props) => {
   const [phone, setPhone] = useState('');

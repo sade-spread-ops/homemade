@@ -20,7 +20,7 @@ app.use(passport.session());
 require('./database/connection');
 
 //middleware
-app.use(morgan('dev'));
+app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,6 +33,9 @@ app.use('/listings', require('./routes/map'));
 app.use('/messages', messagesRouter);
 
 
+
+
+app.use('/coords', require('./routes/map.helper'));
 
 //**********************__AUTH ROUTES__*************************** */
 
