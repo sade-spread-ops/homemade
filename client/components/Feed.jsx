@@ -1,6 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useResolvedPath } from 'react-router';
-import User from '../../models/User';
+const axios = require('axios');
+import Lessee from './Lessee.jsx';
+
+
+const Feed = (props) => {
+  const [lessees, setLessees] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8000/feed')
+      .then((results) => {
+        setLessees(results.data);
+        console.log('DATAAAAA', results.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const removeLessee = (email) => {
+    setLessees(lessees.filter(lessee => lessee.email !== email));
+  };
+  return (
+    <div>
+      { lessees.map((lessee) => 
+        <Lessee lessee={lessee} removeLessee={removeLessee} user={props.user}/>
+      ) }
+    </div>
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import './TinderCards.css';
 
 // function TinderCards() {
@@ -27,4 +71,6 @@ import User from '../../models/User';
 //     </div>
 //   );
 // }
-export default TinderCards; 
+
+
+export default Feed; 
