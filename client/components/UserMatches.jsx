@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Match from './Match.jsx';
 
 const UserMatches = (props) => {
   const [matches, setMatches] = useState([]);
   
   useEffect(() => {
-    axios.get('/matches', {
+    axios.get('http://localhost:8000/matches', {
       params: {
         email: props.user.email
       }
     })
       .then((results) => {
-        setMatches(matches = results);
+        setMatches(results.data);
       })
       .catch((error) => {
         console.log('Error', error);
@@ -20,7 +21,10 @@ const UserMatches = (props) => {
 
   return (
     <div>
-      {matches.map((match) => <Match match={match}/>)}
+      {matches.map((match, i) => <Match 
+        key={i}
+        match={match}/>)}
+      
     </div>
   );
 
