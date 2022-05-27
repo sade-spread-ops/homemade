@@ -21,11 +21,6 @@ module.exports = {
   matchesRouter
 };
 
-
-const { Match } = require('../../models/Match.js');
-const express = require('express');
-const matchesRouter = express.Router();
-
 matchesRouter.get('/', (req, res) => {
   Match.findAll({
     where: {

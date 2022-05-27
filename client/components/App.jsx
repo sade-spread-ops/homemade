@@ -44,9 +44,9 @@ const App = () => {
       { user
         ? <div>
           <Navbar />
-          <Map user={user}/>
+          {/* <Map user={user}/> */}
           {/* <Profile user={user}/> */}
-          {/* <UserMatches user={user}/> */}
+          <UserMatches user={user}/>
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
