@@ -7,8 +7,8 @@ const Message = (props) => {
 
   return (
     <div>
-      <h1>hello</h1>
-      {props.msg.dataValues.message}
+      
+      {props.msg.message}
     </div>
   );
 };

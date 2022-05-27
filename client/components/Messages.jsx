@@ -11,14 +11,14 @@ const Messages = (props) => {
       .get('http://localhost:8000/messages', {params: {recipientId: props.user.id}})
       .then((results) => {
         console.log(results, 'results on 20');
-        setMessages(results);
+        setMessages(results.data);
       })
       .catch((err) => {
         console.error(err);
       });
    
     return { messages };
-  });
+  }, []);
 
   return (
     <div>
