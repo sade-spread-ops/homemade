@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Match from './Match.jsx';
 
 const UserMatches = (props) => {
   const [matches, setMatches] = useState([]);

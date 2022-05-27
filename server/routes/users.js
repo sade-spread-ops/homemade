@@ -29,10 +29,8 @@ router.put('/', (req, res) => {
 });
 
 
+//SENDS USER WHOSE EMAIL IS THE SENDER OF THE MATCH
 router.get('/', (req, res) => {
-  // console.log(req.body, 'req body on 93');
-  // console.log(req.query.email);
-  // res.send('hello');
   User.findOne({ where: { email: req.query.email }})
     .then((user) => {
       res.status(200);
@@ -41,10 +39,8 @@ router.get('/', (req, res) => {
     .catch((err) => {
       res.sendStatus(500);
     });
-  
 });
 
 module.exports = {
   router,
- 
 }; 

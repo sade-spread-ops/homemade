@@ -7,6 +7,7 @@ $ sequelize db:migrate
 $ sequelize db:seed --seed 20220523041332-users-seeder.js
 $ sequelize db:seed --seed 20220525162512-listing-seeder.js
 $ sequelize db:seed --seed 20220526204526-matches-seeder.js
+$ sequelize db:seed --seed 20220521213654-messages-seeder.js
 
 
 ### drop, create, migrate db (reset for testing)

@@ -1,4 +1,7 @@
 import React from 'react';
+import { useEffect, useState } from 'react'; 
+import axios from 'axios';
+import Messages from './Messages.jsx';
 
 const Match = (props) => {
 
@@ -19,7 +22,9 @@ const Match = (props) => {
 
   return (
     <div>
-      {`${match.firstName} ${match.lastName}`}
+      <h1>
+        {`${match.firstName} ${match.lastName}`}
+      </h1>
     </div>
   );
 };
