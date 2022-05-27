@@ -1,12 +1,13 @@
 const express = require ('express');
 const messagesRouter = express.Router();
 const db = require ('../database/connection.js');
-const { UserMessage } = require('../../models/UserMessage.js');
-// const { UserMessage } = require('../../models/User.js');
+// const { UserMessage } = require('../../models/UserMessage.js');
+// // const { UserMessage } = require('../../models/User.js');
+const { Message } = require('../../models/Message.js');
 
 
 //USER SHOULD BE ABLE TO SEE ALL MESSAGES IN THEIR INBOX. THIS WILL BE A GET REQUEST
-//'http://127.0.0.1.8000/auth/google/messages'?
+
 
 // ///user/:id/messages
 
@@ -21,7 +22,23 @@ const { UserMessage } = require('../../models/UserMessage.js');
 // 
 
 
-//
+//WHEN USER CLICKS ON SENDERS NAME, USER WILL BE ABLE TO SEND MESSAGE TO THAT USER
+
+messagesRouter.post('/', (req, res) => {
+  console.log(req.body.id, 'req on 27');
+  res.send('hello');
+  // Message.findOne({where: {
+  //   id: req.body.id
+  // }})
+  //   .then((response) => {
+  //     res.sendStatus(201);
+  //   })
+  //   .catch(() => {
+  //     res.sendStatus(500);
+  //   });
+
+});
+
 
 //FIRST WE WILL START WITH POST 
 messagesRouter.post('/', (req, res) => {
