@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
     address: req.body.address,
     price: req.body.price
   }).then((data) => {
-    res.sendStatus(201);
+    res.sendStatus(201);  
   })
     .catch((error) => {
       console.error(error);

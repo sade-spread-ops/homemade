@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Button, Typography } from '@mui/material';
 import { CLIENT_URL } from '../config/keys.js';
 import Profile from './Profile.jsx';
+import Feed from './Feed.jsx';
+import UserMatches from './UserMatches.jsx';
 
 
 
@@ -35,15 +37,16 @@ const App = () => {
     getUser();
     // console.log(user, '****');
   }, []);
-  
+
   return (
     <div className='welcome'>
       <Typography variant='h6' align='center'>{ user ? user.name : 'Hello 🦔 friend 🦔' }</Typography>
-      { user 
+      { user
         ? <div>
           <Navbar />
           <Map user={user}/>
           {/* <Profile user={user}/> */}
+          {/* <UserMatches user={user}/> */}
         </div>
 
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>

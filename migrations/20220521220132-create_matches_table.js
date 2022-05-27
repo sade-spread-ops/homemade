@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    return queryInterface.createTable('matches', {
+    return queryInterface.createTable('Matches', {
       id: {
         type: Sequelize.INTEGER(11),
         allowNull: false,
@@ -20,6 +20,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.dropTable('matches');
+    return queryInterface.dropTable('Matches');
   }
 };

@@ -8,6 +8,7 @@ const passport = require('passport');
 const { router } = require('./routes/users.js');
 require('dotenv').config();
 require('./passport'); 
+const { matchesRouter } = require('./routes/matches.js');
 
 const app = express();
 app.use(session({secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: true})); // change to env variable 
@@ -25,6 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use('/users', router);
+app.use('/feed', require('./routes/feed.js'));
+app.use('/matches', matchesRouter);
 app.use('/listings', require('./routes/map'));
 
 
@@ -32,6 +35,7 @@ app.use('/listings', require('./routes/map'));
 app.use('/coords', require('./routes/map.helper'));
 
 //**********************__AUTH ROUTES__*************************** */
+
 
 const isLoggedIn = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);
@@ -53,7 +57,7 @@ app.get('/auth', (req, res) => {
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile']})
 );
-
+ 
 app.get('/google/callback', 
   passport.authenticate('google', {
     successRedirect: process.env.CLIENT_URL,
