@@ -14,6 +14,9 @@ const Lessee = (props) => {
       })
       .catch((err, results) => console.log(err, results));
   };
+  const showAlert = () => {
+    alert("Match Added!");
+  };
   return (
     <div>
       { props.lessee.firstName }
@@ -31,7 +34,8 @@ const Lessee = (props) => {
       </button>
       <button onClick={ () => {
         addLessee();
-        props.removeLessee(props.lessee.email); 
+        props.removeLessee(props.lessee.email);
+        showAlert();
       } }>
         Match!
       </button>
