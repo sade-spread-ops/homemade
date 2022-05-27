@@ -23,7 +23,7 @@ const Feed = (props) => {
   return (
     <div>
       { lessees.map((lessee) => 
-        <Lessee lessee={lessee} removeLessee={removeLessee} user={props.user}/>
+        <Lessee key={lessee.id} lessee={lessee} removeLessee={removeLessee} user={props.user}/>
       ) }
     </div>
   );
@@ -39,7 +39,7 @@ const Feed = (props) => {
 
 
 
-
+ 
 
 
 
