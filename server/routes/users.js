@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require ('../database/connection.js');
 const { User } = require('../../models/User.js');
 
+//UPDATE A USER
 router.put('/', (req, res) => {
   console.log('This line ran', req.body);
   User.update({
@@ -28,13 +29,18 @@ router.put('/', (req, res) => {
 });
 
 
-router.get('/users', (req, res) => {
+router.get('/', (req, res) => {
   // console.log(req.body, 'req body on 93');
-  console.log(req.params);
-  res.send('hello');
-  // User.findOne({ where: { email: req.params }}).then((user) => {
-  //   res.json(user);
-  // });
+  // console.log(req.query.email);
+  // res.send('hello');
+  User.findOne({ where: { email: req.query.email }})
+    .then((user) => {
+      res.status(200);
+      res.send(user);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
   
 });
 

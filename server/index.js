@@ -85,36 +85,36 @@ app.get('/logout', (req, res) => {
 
 
 // GET ALL USERS
-app.get('/users', (req, res) => {
-  User.findAll().then((users) => {
-    res.json(users);
-  });
-});
+// app.get('/users', (req, res) => {
+//   User.findAll().then((users) => {
+//     res.json(users);
+//   });
+// });
 
-//GET ONE USER 
-// app.get('users/:id')
-app.get('/users/:id', (req, res) => {
-  // console.log(req.body, 'req body on 93');
-  //console.log(req.params);
-  //  res.send('hello');
-  User.findOne({ where: { id: req.params }}).then((user) => {
-    res.json(user);
-  });
+// //GET ONE USER 
+// // app.get('users/:id')
+// app.get('/users/:id', (req, res) => {
+//   // console.log(req.body, 'req body on 93');
+//   //console.log(req.params);
+//   //  res.send('hello');
+//   User.findOne({ where: { id: req.params }}).then((user) => {
+//     res.json(user);
+//   });
   
-});
+// });
 
 
-// CREATE USER
-app.post('/users', (req, res) => {
-  //console.log(req.body, 'body here on 105');
-  //res.send('hello');
-  User.create(req.body).then((user) => {
-    res.json(user);
-  });
-});
+// // CREATE USER
+// app.post('/users', (req, res) => {
+//   //console.log(req.body, 'body here on 105');
+//   //res.send('hello');
+//   User.create(req.body).then((user) => {
+//     res.json(user);
+//   });
+// });
 
-//users/:id/messages
-// GET ALL messages WHERE userID = your id
+// //users/:id/messages
+// // GET ALL messages WHERE userID = your id
 
 
 const port = process.env.PORT || 8000;

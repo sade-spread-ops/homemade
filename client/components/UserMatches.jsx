@@ -7,7 +7,7 @@ const UserMatches = (props) => {
   useEffect(() => {
     axios.get('http://localhost:8000/matches', {
       params: {
-        email: 'velouriagreen@gmail.com'
+        email: props.user.email
       }
     })
       .then((results) => {
@@ -20,8 +20,10 @@ const UserMatches = (props) => {
 
   return (
     <div>
-      {/* {matches.map((match) => <Match match={match}/>)} */}
-      <h1>hello</h1>
+      {matches.map((match, i) => <Match 
+        key={i}
+        match={match}/>)}
+      
     </div>
   );
 

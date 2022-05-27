@@ -8,20 +8,18 @@ const Match = (props) => {
   useEffect(() => {
     axios.get('http://localhost:8000/users', {params: { email: props.match.matchRequestSender }})
       .then((results) => {
-        console.log(results, 'results on 9');
-        setMatch(results);
+        //console.log(results, 'results on 9');
+        setMatch(results.data);
       })
       .catch((err) => {
         console.error(err);
       });  
   } 
   );
-  //     {`${props.match.firstName} ${props.match.lastName}`}
 
   return (
     <div>
-      
-      {`${props.user.firstName} ${props.user.lastName}`}
+      {`${match.firstName} ${match.lastName}`}
     </div>
   );
 };
