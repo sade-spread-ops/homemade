@@ -14,7 +14,7 @@ getLongLatData = (address) => {
   return axios(options);
 };
 coordinates.get('/', (req, res) => {
-  getLongLatData('808 Lurline Dr New Orleans LA 70121')
+  getLongLatData(address)
     .then(data => {
       const { center } = data.data.features[0];
       console.log(data.data.features[0].center);
@@ -22,6 +22,19 @@ coordinates.get('/', (req, res) => {
     })
     .catch(e => {
       console.error(e);
+      res.sendStatus(500);
+    });
+});
+
+coordinates.post('/', (req, res, next) => {
+  console.log(req.body, '*****');
+  getLongLatData('808 Lurline Dr New Orleans LA 70121')
+    .then(data => {
+      const { center } = data.data.features[0];
+      console.log(data.data.features[0].center);
+      res.status(201).send(center);
+    }).catch(err => {
+      console.error(err);
       res.sendStatus(500);
     });
 });
