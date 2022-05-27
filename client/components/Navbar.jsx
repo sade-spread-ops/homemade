@@ -3,8 +3,9 @@ import { AppBar, Box, Toolbar, IconButton, Typography, Menu,
   Container, Button, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
+import { Link } from 'react-router-dom';
 
-const pages = ['Profile', 'Listings', 'Feed', 'Messages', 'Map'];
+const pages = ['Profile', 'Feed', 'Matches', 'Messages', 'Map', 'Logout'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -75,14 +76,25 @@ const Navbar = () => {
             HomeMade
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+            {pages.map((page, i) => ( page === 'Profile' ?
+              <Link to={'/'}>
+                <Button
+                  key={`${page}-${i}`}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  disabled={page === 'Messages'} > 
+                  {page}
+                </Button>
+              </Link> :
+              <Link to={`/${page.toLowerCase()}`}>  
+                <Button   
+                  key={`${page}-${i}`}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  disabled={page === 'Messages' || page === 'Logout'} >
+                  {page}
+                </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>

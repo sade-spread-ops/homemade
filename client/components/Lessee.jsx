@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-const axios = require('axios');
+import axios from 'axios';
 
 
 
