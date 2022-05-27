@@ -68,7 +68,7 @@ const App = () => {
           <Button variant="contained" color="primary" size='large' >
             Login with Google
           </Button></a></Typography>
-      }
+      } 
     </div>
   );
 };
