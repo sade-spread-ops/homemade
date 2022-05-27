@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useResolvedPath } from 'react-router';
-const axios = require('axios');
+import axios from 'axios';
 import Lessee from './Lessee.jsx';
 
 
