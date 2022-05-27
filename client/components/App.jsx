@@ -56,8 +56,8 @@ const App = () => {
               {/* <Feed /> */}
               <Route exact path='/matches' element={<UserMatches user={user}/>} />
               {/* <UserMatches user={user}/> */}
-              <Route exact path='/messages' element={<Messages/>} />
-              {/* <Messages /> */}
+              <Route exact path='/messages' element={<Messages user={user}/>} />
+
               <Route exact path='/map' element={<Map user={user} />} />
               {/* <Map user={user}/> */}
             </Routes>

@@ -21,6 +21,8 @@ const Message = sequelize.define('Message', {
   },
 });
 
-
+module.exports = {
+  Message
+};
 
 //Does this connect two foreign keys to the same table? userId and recepientId?
