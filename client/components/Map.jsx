@@ -19,7 +19,7 @@ const Map = ({ user }) => {
 
   const [addressInput, setAddressInput] = useState('');
   
-  useEffect(() => {
+  useEffect(() => { // <-- this is the same as componentDidMount
     const getAllListings = () => {
       axios.get('http://localhost:8000/listings')
         .then(listingsArr => {
@@ -29,7 +29,7 @@ const Map = ({ user }) => {
         .catch(err => console.error(err));
     };
     getAllListings();
-  }, [listingsArr.data]);
+  }, [listingsArr.data]); // <-- bug here - if empty array, will run on every render (infinite loop) / if not empty, will run only once and not update new listings
 
   const handleAddressInputChange = event => { 
     setAddressInput(event.target.value);
@@ -39,7 +39,7 @@ const Map = ({ user }) => {
   const createNewListing = () => {
     console.log(coordinates, 'coordinates ln57');
     axios.post('http://localhost:8000/listings', {
-      userId: user.id,
+      userId: user.id, // <-- this is the userId of the logged in user [(bug) not saving userId to db]
       description: description,
       imageURL: imageURL,
       longitude: coordinates[0],

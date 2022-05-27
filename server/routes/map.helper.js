@@ -40,5 +40,3 @@ coordinates.post('/', (req, res, next) => {
 });
 
 module.exports = coordinates;
-
-// console.log(getLongLatData('808 Lurline Dr New Orleans LA 70121'));
