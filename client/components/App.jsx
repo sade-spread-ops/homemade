@@ -15,6 +15,7 @@ import { CLIENT_URL } from '../config/keys.js';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  
   useEffect(() => {
     const getUser = () => {
       const options = {
@@ -52,7 +53,7 @@ const App = () => {
             <Routes>
               <Route exact path='/' element={<Profile user={user} />} />
               {/* <Profile user={user}/> */}
-              <Route exact path='/feed' element={<Feed/>} />
+              <Route exact path='/feed' element={<Feed user={user}/>} />
               {/* <Feed /> */}
               <Route exact path='/matches' element={<UserMatches user={user}/>} />
               {/* <UserMatches user={user}/> */}
