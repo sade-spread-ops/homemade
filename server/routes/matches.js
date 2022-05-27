@@ -4,6 +4,7 @@ const db = require ('../database/connection.js');
 const sequelize = require('sequelize');
 const { Match } = require('../../models/Match.js');
 
+//ROUTE TO CREATE A MATCH
 matchesRouter.post('/', (req, res) => {
   Match.create({
     matchRequestSender: req.body.matchRequestSender,
@@ -17,31 +18,11 @@ matchesRouter.post('/', (req, res) => {
     });
 });
 
-
-// matchesRouter.get('/', (req, res) => {
-//   Match.findAll({
-//     where: {
-//       matchRequestReceiver: req.params.email
-//     }
-//   })
-//     .then((results) => {
-//       res.status(200);
-//       res.send(results);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       res.sendStatus(404);
-//     });
-// });
-
-module.exports = {
-  matchesRouter
-};
-
+//ROUTE TO GET ALL MATCHES
 matchesRouter.get('/', (req, res) => {
   Match.findAll({
     where: {
-      matchRequestReceiver: req.params.email
+      matchRequestReceiver: req.query.email
     }
   })
     .then((results) => {
@@ -51,5 +32,45 @@ matchesRouter.get('/', (req, res) => {
     .catch((error) => {
       console.log(error);
       res.sendStatus(404);
+    });
+});
+
+matchesRouter.delete('/', (req, res) => {
+  // console.log(req.query.matchRequestSender, 'query email on 39');
+  // res.send('hello');
+  Match.destroy({ where: {
+    matchRequestSender: req.query.matchRequestSender
+  }})
+    .then((data) => {
+      // console.log(data, 'data on 45');
+      res.sendStatus(204);
+      
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+});
+
+
+
+
+
+module.exports = {
+  matchesRouter
+};
+
+matchesRouter.get('/', (req, res) => {
+  Match.findAll({
+    where: {
+      matchRequestReceiver: req.query.email
+    }
+  })
+    .then((results) => {
+      res.status(200);
+      res.send(results);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
     });
 });

@@ -11,7 +11,14 @@ module.exports = {
       },
       message: Sequelize.STRING(255),
       timeSent: Sequelize.DATE,
-      recipientId: Sequelize.INTEGER(11),
+      senderId: {
+        type: Sequelize.INTEGER(11),
+        references: { model: 'users', key: 'id' }
+      },
+      recipientId: {
+        type: Sequelize.INTEGER(11),
+        references: { model: 'users', key: 'id' }
+      },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
     });

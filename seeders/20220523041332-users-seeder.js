@@ -5,11 +5,11 @@ module.exports = {
     const users = [];
     for (let i = 0; i < 5; i++) {
       users.push({
-        id: i,
+        id: i + 1,
         email: `foobar${i}@gmail.com`,
         phone: `5049${i}65555`,
-        firstName: 'Foo',
-        lastName: 'Bar',
+        firstName: `Foo ${i}`,
+        lastName: `Bar ${i}`,
         age: 18 + i,
         gender: i % 2 === 0 ? 'Male' : 'Female',
         lessee: i % 2 === 0,

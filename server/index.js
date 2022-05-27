@@ -9,6 +9,7 @@ const { router } = require('./routes/users.js');
 require('dotenv').config();
 require('./passport'); 
 const { matchesRouter } = require('./routes/matches.js');
+const { messagesRouter } = require('./routes/messageRouting.js');
 
 const app = express();
 app.use(session({secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: true})); // change to env variable 
@@ -29,6 +30,8 @@ app.use('/users', router);
 app.use('/feed', require('./routes/feed.js'));
 app.use('/matches', matchesRouter);
 app.use('/listings', require('./routes/map'));
+app.use('/messages', messagesRouter);
+
 
 
 
@@ -80,6 +83,38 @@ app.get('/logout', (req, res) => {
 });
 //************************************************************** */
 
+
+// GET ALL USERS
+// app.get('/users', (req, res) => {
+//   User.findAll().then((users) => {
+//     res.json(users);
+//   });
+// });
+
+// //GET ONE USER 
+// // app.get('users/:id')
+// app.get('/users/:id', (req, res) => {
+//   // console.log(req.body, 'req body on 93');
+//   //console.log(req.params);
+//   //  res.send('hello');
+//   User.findOne({ where: { id: req.params }}).then((user) => {
+//     res.json(user);
+//   });
+  
+// });
+
+
+// // CREATE USER
+// app.post('/users', (req, res) => {
+//   //console.log(req.body, 'body here on 105');
+//   //res.send('hello');
+//   User.create(req.body).then((user) => {
+//     res.json(user);
+//   });
+// });
+
+// //users/:id/messages
+// // GET ALL messages WHERE userID = your id
 
 
 const port = process.env.PORT || 8000;
