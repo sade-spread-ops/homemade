@@ -4,7 +4,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('matches', [{
       matchRequestSender: 'foobar0@gmail.com',
-      matchRequestReceiver: 'foobar1@gmail.com'
+      matchRequestReceiver: 'velouriagreen@gmail.com'
     }], {});
   },
 
