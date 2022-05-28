@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 
-const pages = ['Profile', 'Feed', 'Matches', 'Messages', 'Map', 'Logout'];
+const pages = ['Profile', 'Feed', 'Matches', 'Messages', 'Map', 'Listings', 'Logout'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -81,8 +81,7 @@ const Navbar = () => {
                 <Button
                   key={`${page}-${i}`}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                  disabled={page === 'Messages'} > 
+                  sx={{ my: 2, color: 'white', display: 'block' }} > 
                   {page}
                 </Button>
               </Link> :
@@ -91,7 +90,7 @@ const Navbar = () => {
                   key={`${page}-${i}`}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
-                  disabled={page === 'Messages' || page === 'Logout'} >
+                  disabled={page === 'Matches' || page === 'Logout'} >
                   {page}
                 </Button>
               </Link>

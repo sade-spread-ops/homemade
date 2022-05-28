@@ -5,6 +5,7 @@ import Feed from './Feed.jsx';
 import UserMatches from './UserMatches.jsx';
 import Messages from './Messages.jsx';
 import Map from './Map.jsx';
+import Listings from './Listings.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import axios from 'axios';
@@ -54,6 +55,7 @@ const App = () => {
               <Route exact path='/matches' element={<UserMatches user={user}/>} />
               <Route exact path='/messages' element={<Messages/>} />
               <Route exact path='/map' element={<Map user={user} />} />
+              <Route exact path='/listings' element={<Listings />} />
             </Routes>
           </div>
         </Router>

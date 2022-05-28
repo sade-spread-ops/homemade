@@ -4,7 +4,6 @@ import { MAPBOX_TOKEN } from '../config/keys';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
 import { Box, Grid, TextField, Button } from '@mui/material';
-
 const Map = ({ user }) => {
   const [viewState, setViewState] = useState({
     longitude: -90.155,
@@ -87,7 +86,7 @@ const Map = ({ user }) => {
         }}
       >
         <ReactMapGL
-          id="map_view"
+          id="map-view"
           {...viewState}
           onMove={evt => setViewState(evt.viewState)}
           style={{width: 800, height: 600}}
@@ -99,7 +98,7 @@ const Map = ({ user }) => {
             ))
           }
         </ReactMapGL>
-        <div className="add-listing" >
+        <div className="map-listing-form">
           <Grid container direction={'column'} spacing={2}>
             <Grid item>
               <TextField label="description" type="text" onChange={e => setDescription(e.target.value)} variant="outlined" required/>
@@ -114,9 +113,11 @@ const Map = ({ user }) => {
               <TextField label="price" type="number" step="0.01" onChange={e => setPrice(e.target.value)} variant="outlined" required/>
             </Grid>
           </Grid>
-          <Button variant="contained" onClick={() => createNewListing()} color="primary">
+          <div className="create-listing-btn">
+            <Button variant="contained" onClick={() => createNewListing()} color="primary">
               Create Listing
-          </Button>
+            </Button>
+          </div>
         </div>
       </Box>
     </div>
