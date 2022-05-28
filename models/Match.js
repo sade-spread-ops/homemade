@@ -1,10 +1,8 @@
-
-
 const Sequelize = require('sequelize');
 
 const sequelize = require('../server/database/connection');
 
-const Match = sequelize.define('Match', {
+const Match = sequelize.define('match', {
   id: {
     type: Sequelize.INTEGER(11),
     allowNull: false,

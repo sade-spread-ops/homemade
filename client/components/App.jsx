@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
-import Map from './Map.jsx';
-import axios from 'axios';
-import { Button, Typography } from '@mui/material';
-import { CLIENT_URL } from '../config/keys.js';
 import Profile from './Profile.jsx';
 import Feed from './Feed.jsx';
 import UserMatches from './UserMatches.jsx';
+import Messages from './Messages.jsx';
+import Map from './Map.jsx';
+import Listings from './Listings.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import axios from 'axios';
+import { Button, Typography } from '@mui/material';
+import { CLIENT_URL } from '../config/keys.js';
 
 
 
 const App = () => {
   const [user, setUser] = useState(null);
+  
   useEffect(() => {
     const getUser = () => {
       const options = {
-        url: 'http://localhost:8000/protected',
+        url: '/protected',
         method: 'GET',
         withCredentials: true,
         headers: {
@@ -29,31 +34,37 @@ const App = () => {
           if (res.status === 200) { return res; }
         })
         .then(({ data }) => { // <-- data = userObject
-          console.log(data, '&&&&&&&&');
+          console.log(data);
           setUser(data);
         })
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
-    // console.log(user, '****');
   }, []);
 
   return (
     <div className='welcome'>
       <Typography variant='h6' align='center'>{ user ? user.name : 'Hello 🦔 friend 🦔' }</Typography>
       { user
-        ? <div>
-          <Navbar />
-          <Map user={user}/>
-          {/* <Profile user={user}/> */}
-          {/* <UserMatches user={user}/> */}
-        </div>
-
+        ?
+        <Router>
+          <div>
+            <Navbar />
+            <Routes>
+              <Route exact path='/' element={<Profile user={user} />} />
+              <Route exact path='/feed' element={<Feed user={user}/>} />
+              <Route exact path='/matches' element={<UserMatches user={user}/>} />
+              <Route exact path='/messages' element={<Messages/>} />
+              <Route exact path='/map' element={<Map user={user} />} />
+              <Route exact path='/listings' element={<Listings />} />
+            </Routes>
+          </div>
+        </Router>
         : <Typography align='center' ><a href={ `${CLIENT_URL}/auth/google` }>
           <Button variant="contained" color="primary" size='large' >
             Login with Google
           </Button></a></Typography>
-      }
+      } 
     </div>
   );
 };

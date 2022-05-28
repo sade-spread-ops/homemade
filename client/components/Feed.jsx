@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useResolvedPath } from 'react-router';
-const axios = require('axios');
-import Lessee from './Lessee.jsx';
+import axios from 'axios';
+import Lessor from './Lessor.jsx';
 
 
 const Feed = (props) => {
-  const [lessees, setLessees] = useState([]);
+  const [lessors, setLessors] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:8000/feed')
       .then((results) => {
-        setLessees(results.data);
+        setLessors(results.data);
         console.log('DATAAAAA', results.data);
       })
       .catch((err) => {
@@ -17,13 +17,14 @@ const Feed = (props) => {
       });
   }, []);
 
-  const removeLessee = (email) => {
-    setLessees(lessees.filter(lessee => lessee.email !== email));
+  const removeLessor = (email) => {
+    setLessors(lessors.filter(lessor => lessor.email !== email));
   };
+  
   return (
     <div>
-      { lessees.map((lessee) => 
-        <Lessee key={lessee.id} lessee={lessee} removeLessee={removeLessee} user={props.user}/>
+      { lessors.map((lessor) => 
+        <Lessor key={lessor.id} lessor={lessor} removeLessor={removeLessor} user={props.user}/>
       ) }
     </div>
   );
