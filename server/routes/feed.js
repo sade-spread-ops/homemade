@@ -8,7 +8,7 @@ const { User } = require('../../models/User.js');
 router.get('/', (req, res) =>
   User.findAll({
     where: {
-      lessee: true
+      lessor: true
     }
   })
     .then(users => {

@@ -17,13 +17,15 @@ const UserMatches = (props) => {
       .catch((error) => {
         console.log('Error', error);
       });
-  });
+  }, []);
 
   return (
     <div>
       {matches.map((match, i) => <Match 
         key={i}
-        match={match}/>)}
+        match={match}
+        user={props.user}
+      />)}
       
     </div>
   );

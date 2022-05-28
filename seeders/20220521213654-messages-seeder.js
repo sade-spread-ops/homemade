@@ -3,6 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('messages', [{
+<<<<<<< HEAD
       // userId: 6,
       // description: 'Lowes',
       // imageURL: 'https://lh5.googleusercontent.com/p/AF1QipMnFuhdJGF1fds7dtqgDW6mHevtiK6jh8JgK_bM=w426-h240-k-no',
@@ -11,6 +12,25 @@ module.exports = {
       // address: '121 Jefferson Hwy, Jefferson, LA 70121',
       // price: 1200
     }], {});
+=======
+      id: 6,
+      message: 'heyyy',
+      // timeSent: Sequelize.DATE,
+      senderId: 3,
+      recipientId: 6,
+    
+    
+    },
+    {
+      id: 2,
+      message: 'hello',
+      // timeSent: Sequelize.DATE,
+      senderId: 4,
+      recipientId: 6,
+    }
+  
+    ], {});
+>>>>>>> 9aad788ad5fdf5955e4a189b176e34872cc53bc8
   },
 
   async down (queryInterface, Sequelize) {

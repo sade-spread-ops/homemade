@@ -3,35 +3,39 @@ import axios from 'axios';
 
 
 
-const Lessee = (props) => {
-  const addLessee = () => {
+const Lessor = (props) => {
+  const addLessor = () => {
     axios.post('http://localhost:8000/matches', {
       matchRequestSender: props.user.email,
-      matchRequestReceiver: props.lessee.email
+      matchRequestReceiver: props.lessor.email
     })
       .then((results) => {
         console.log('SUCCESSSSS');
       })
       .catch((err, results) => console.log(err, results));
   };
+  const showAlert = () => {
+    alert('Match Added!');
+  };
   return (
     <div>
-      { props.lessee.firstName }
+      { props.lessor.firstName }
       <br></br>
-      { props.lessee.gender }
+      { props.lessor.gender }
       <br></br>
-      { props.lessee.age }
+      { props.lessor.age }
       <br></br>
-      <img src={ props.lessee.imageURL }/>
+      <img src={ props.lessor.imageURL }/>
       <br></br>
       <br></br>
       <br></br>
-      <button onClick={() => props.removeLessee(props.lessee.email)}>
+      <button onClick={() => props.removeLessor(props.lessor.email)}>
         Decline.
       </button>
       <button onClick={ () => {
-        addLessee();
-        props.removeLessee(props.lessee.email); 
+        addLessor();
+        props.removeLessor(props.lessor.email);
+        showAlert();
       } }>
         Match!
       </button>
@@ -46,4 +50,4 @@ const Lessee = (props) => {
   );
 };
 
-export default Lessee;  
+export default Lessor;  

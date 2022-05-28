@@ -16,6 +16,7 @@ import { CLIENT_URL } from '../config/keys.js';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  
   useEffect(() => {
     const getUser = () => {
       const options = {
@@ -63,7 +64,7 @@ const App = () => {
           <Button variant="contained" color="primary" size='large' >
             Login with Google
           </Button></a></Typography>
-      }
+      } 
     </div>
   );
 };
