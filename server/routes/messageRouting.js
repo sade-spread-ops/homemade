@@ -26,10 +26,19 @@ const { resolve } = require('path');
 //WHEN USER CLICKS ON SENDERS NAME, USER WILL BE ABLE TO SEND MESSAGE TO THAT USER
 
 messagesRouter.post('/', (req, res) => {
-  Message.findOne({where: {
-    id: req.body.id
-  }})
-    .then((response) => {
+  Message.findOrCreate({
+    where: {
+      senderId: req.body.senderId,
+      recipientId: req.body.recipientId,
+      message: req.body.message
+    },
+    defaults: {
+      senderId: req.body.senderId,
+      recipientId: req.body.recipientId,
+      message: req.body.message
+    }
+  })
+    .then(() => {
       res.sendStatus(201);
     })
     .catch(() => {
