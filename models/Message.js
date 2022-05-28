@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../server/database/connection');
 
-const Message = sequelize.define('Message', {
+const Message = sequelize.define('message', {
   id: {
     type: Sequelize.INTEGER(11),
     allowNull: false,

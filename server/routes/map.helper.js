@@ -28,7 +28,7 @@ coordinates.get('/', (req, res) => {
 
 coordinates.post('/', (req, res, next) => {
   console.log(req.body, '*****');
-  getLongLatData('808 Lurline Dr New Orleans LA 70121')
+  getLongLatData(req.body.address)
     .then(data => {
       const { center } = data.data.features[0];
       console.log(data.data.features[0].center);

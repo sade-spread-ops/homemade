@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.createTable('user_matches', {
       userId: {
         type: Sequelize.INTEGER(11),
-        references: { model: 'Users', key: 'id' }
+        references: { model: 'users', key: 'id' }
       },
       matchId: {
         type: Sequelize.INTEGER(11),
