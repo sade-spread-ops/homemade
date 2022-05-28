@@ -4,7 +4,6 @@ import { MAPBOX_TOKEN } from '../config/keys';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
 import { Box, Grid, TextField, Button } from '@mui/material';
-
 const Map = ({ user }) => {
   const [viewState, setViewState] = useState({
     longitude: -90.155,
@@ -15,13 +14,13 @@ const Map = ({ user }) => {
   const [imageURL, setImageURL] = useState('');
   const [price, setPrice] = useState(0);
   const [listingsArr, setListingsArr] = useState([]);
-  const [coordinates, setCoordinates] = useState(null); 
+  const [coordinates, setCoordinates] = useState([0, 0]); 
 
   const [addressInput, setAddressInput] = useState('');
-  
+  const [userId, setUserId] = useState(0);
   useEffect(() => { // <-- this is the same as componentDidMount
     const getAllListings = () => {
-      axios.get('http://localhost:8000/listings')
+      axios.get('/listings')
         .then(listingsArr => {
           console.log(listingsArr.data);
           setListingsArr(listingsArr.data);
@@ -29,7 +28,7 @@ const Map = ({ user }) => {
         .catch(err => console.error(err));
     };
     getAllListings();
-  }, [listingsArr.data]); // <-- bug here - if empty array, will run on every render (infinite loop) / if not empty, will run only once and not update new listings
+  }, []); 
 
   const handleAddressInputChange = event => { 
     setAddressInput(event.target.value);
@@ -37,8 +36,9 @@ const Map = ({ user }) => {
   };
 
   const createNewListing = () => {
-    console.log(coordinates, 'coordinates ln57');
-    axios.post('http://localhost:8000/listings', {
+    setUserId(user.id);
+    console.log(coordinates, userId);
+    axios.post('/listings', {
       userId: user.id, // <-- this is the userId of the logged in user [(bug) not saving userId to db]
       description: description,
       imageURL: imageURL,
@@ -46,7 +46,12 @@ const Map = ({ user }) => {
       latitude: coordinates[1],
       address: addressInput,
       price: price
-    });
+    }).then(() => {
+      axios.get('/listings').then(listings => {
+        console.log(listings.data, 'data ln51');
+        setListingsArr(listings.data);
+      });
+    }).catch(err => console.error(err));
   };
 
   const getCoordinates = (address) => {
@@ -81,22 +86,19 @@ const Map = ({ user }) => {
         }}
       >
         <ReactMapGL
-          id="map_view"
+          id="map-view"
           {...viewState}
           onMove={evt => setViewState(evt.viewState)}
           style={{width: 800, height: 600}}
           mapStyle="mapbox://styles/mapbox/dark-v10"
-          mapboxAccessToken={MAPBOX_TOKEN}
-        >
-          <Marker longitude={-90.153865} latitude={29.965745} color="red" />
-          {/* <Marker longitude={-90.15} latitude={29.966} color="red" /> */}
+          mapboxAccessToken={MAPBOX_TOKEN}>
           { !listingsArr ? <div> </div> :
             listingsArr.map((listing, i) => (
-              <Marker longitude={listing.longitude} latitude={listing.latitude} color="blue" key={i}/>
+              <Marker longitude={listing.longitude} latitude={listing.latitude} color="red" key={i}/>
             ))
           }
         </ReactMapGL>
-        <div className="add-listing" >
+        <div className="map-listing-form">
           <Grid container direction={'column'} spacing={2}>
             <Grid item>
               <TextField label="description" type="text" onChange={e => setDescription(e.target.value)} variant="outlined" required/>
@@ -104,12 +106,6 @@ const Map = ({ user }) => {
             <Grid item>
               <TextField label="imageUrl" type="text" onChange={e => setImageURL(e.target.value)} variant="outlined" />
             </Grid>
-            {/* <Grid item>
-              <TextField label="longitude" type="number" step="0.001" variant="outlined" />
-            </Grid>
-            <Grid item>
-              <TextField label="latitude" type="number" step="0.001" variant="outlined" />
-            </Grid> */}
             <Grid item>
               <TextField label="address" type="text" onChange={handleAddressInputChange} variant="outlined" required/>
             </Grid>
@@ -117,19 +113,11 @@ const Map = ({ user }) => {
               <TextField label="price" type="number" step="0.01" onChange={e => setPrice(e.target.value)} variant="outlined" required/>
             </Grid>
           </Grid>
-          <Button variant="contained" onClick={() => createNewListing()} color="primary">
+          <div className="create-listing-btn">
+            <Button variant="contained" onClick={() => createNewListing()} color="primary">
               Create Listing
-          </Button>
-
-          {/* <form>
-            <div><input type="text" placeholder="description" onChange={e => setDescription(e.target.value)} /></div>
-            <div><input type="text" placeholder="imageUrl" onChange={e => setImageURL(e.target.value)}/></div>
-            <div><input type="number" step="0.0001" placeholder="longitude" onChange={e => setLongitude(e.target.value)} required/></div>
-            <div><input type="number" step="0.0001"placeholder="latitude" onChange={e => setLatitude(e.target.value)} required/></div>
-            <div><input type="text" placeholder="address" onChange={e => setAddress(e.target.value)} required/></div>
-            <div><input type="number" step="0.01" placeholder="price" onChange={e => setPrice(e.target.value)} required/></div>
-            <Typography variant='h6'><button onClick={() => createNewListing()}>Create Listing</button></Typography>
-          </form> */}
+            </Button>
+          </div>
         </div>
       </Box>
     </div>

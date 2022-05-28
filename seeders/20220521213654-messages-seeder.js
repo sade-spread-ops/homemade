@@ -8,8 +8,6 @@ module.exports = {
       // timeSent: Sequelize.DATE,
       senderId: 3,
       recipientId: 6,
-    
-    
     }, {
       id: 2,
       message: 'hello',

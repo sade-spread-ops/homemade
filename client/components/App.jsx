@@ -5,6 +5,7 @@ import Feed from './Feed.jsx';
 import UserMatches from './UserMatches.jsx';
 import Messages from './Messages.jsx';
 import Map from './Map.jsx';
+import Listings from './Listings.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import axios from 'axios';
@@ -19,7 +20,7 @@ const App = () => {
   useEffect(() => {
     const getUser = () => {
       const options = {
-        url: 'http://localhost:8000/protected',
+        url: '/protected',
         method: 'GET',
         withCredentials: true,
         headers: {
@@ -33,13 +34,12 @@ const App = () => {
           if (res.status === 200) { return res; }
         })
         .then(({ data }) => { // <-- data = userObject
-          console.log(data, '&&&&&&&&');
+          console.log(data);
           setUser(data);
         })
         .catch((err) => console.error(err, '***ERROR***'));
     };
     getUser();
-    // console.log(user, '****');
   }, []);
 
   return (
@@ -52,15 +52,11 @@ const App = () => {
             <Navbar />
             <Routes>
               <Route exact path='/' element={<Profile user={user} />} />
-              {/* <Profile user={user}/> */}
               <Route exact path='/feed' element={<Feed user={user}/>} />
-              {/* <Feed /> */}
               <Route exact path='/matches' element={<UserMatches user={user}/>} />
-              {/* <UserMatches user={user}/> */}
-              <Route exact path='/messages' element={<Messages user={user}/>} />
-
+              <Route exact path='/messages' element={<Messages/>} />
               <Route exact path='/map' element={<Map user={user} />} />
-              {/* <Map user={user}/> */}
+              <Route exact path='/listings' element={<Listings />} />
             </Routes>
           </div>
         </Router>
