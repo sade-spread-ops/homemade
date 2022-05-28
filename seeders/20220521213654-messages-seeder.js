@@ -10,16 +10,18 @@ module.exports = {
       recipientId: 6,
     
     
-    },
-    {
+    }, {
       id: 2,
       message: 'hello',
       // timeSent: Sequelize.DATE,
       senderId: 4,
       recipientId: 6,
-    }
-  
-    ], {});
+    }, {
+      id: 1,
+      message: 'What\'s up?',
+      senderId: 5,
+      recipientId: 6
+    }], {});
   },
 
   async down (queryInterface, Sequelize) {
