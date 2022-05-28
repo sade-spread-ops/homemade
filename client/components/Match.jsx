@@ -6,7 +6,7 @@ import SendMessage from './SendMessage.jsx';
 
 const Match = (props) => {
 
-  const [match, setMatch] = useState({});
+  const [recipient, setRecipient] = useState({});
   const [sendMessageRevealed, setSendMessageRevealed] = useState(false);
 
   const revealMessage = () => {
@@ -17,7 +17,7 @@ const Match = (props) => {
     axios.get('http://localhost:8000/users', {params: { email: props.match.matchRequestSender }})
       .then((results) => {
         //console.log(results, 'results on 9');
-        setMatch(results.data);
+        setRecipient(results.data);
       })
       .catch((err) => {
         console.error(err);
@@ -29,9 +29,9 @@ const Match = (props) => {
   return (
     <div>
       <h1 onClick={() => revealMessage()}>
-        {`${match.firstName} ${match.lastName}`}
+        {`${sender.firstName} ${sender.lastName}`}
       </h1>
-      {sendMessageRevealed && <SendMessage user={props.user} match={match}/>}
+      {sendMessageRevealed && <SendMessage user={props.user} recipient={recipient}/>}
     </div>
   );
 };
