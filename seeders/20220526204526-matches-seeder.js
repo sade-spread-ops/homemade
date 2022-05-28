@@ -5,6 +5,9 @@ module.exports = {
     return queryInterface.bulkInsert('matches', [{
       matchRequestSender: 'foobar0@gmail.com',
       matchRequestReceiver: 'velouriagreen@gmail.com'
+    }, {
+      matchRequestSender: 'foobar0@gmail.com',
+      matchRequestReceiver: 'raymondjjeong@gmail.com'
     }], {});
   },
 

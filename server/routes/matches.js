@@ -57,4 +57,20 @@ matchesRouter.delete('/', (req, res) => {
 
 module.exports = {
   matchesRouter
-};  
+};
+
+matchesRouter.get('/', (req, res) => {
+  Match.findAll({
+    where: {
+      matchRequestReceiver: req.query.email
+    }
+  })
+    .then((results) => {
+      res.status(200);
+      res.send(results);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
