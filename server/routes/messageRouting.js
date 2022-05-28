@@ -26,16 +26,16 @@ const { resolve } = require('path');
 //WHEN USER CLICKS ON SENDERS NAME, USER WILL BE ABLE TO SEND MESSAGE TO THAT USER
 
 messagesRouter.post('/', (req, res) => {
-  Message.findOne({
+  Message.findOrCreate({
     where: {
       senderId: req.body.senderId,
       recipientId: req.body.recipientId
     }
   })
     .then((results) => {
-      console.log(results.dataValues.id, 'results in messageRouting on line 36')
+      console.log(results[0].dataValues.id, 'results in messageRouting on line 36')
       Message.upsert({
-        id: results.dataValues.id,
+        id: results[0].dataValues.id,
         senderId: req.body.senderId,
         recipientId: req.body.recipientId,
         message: req.body.message
@@ -70,20 +70,18 @@ messagesRouter.get('/', (req, res) => {
 });
 
 messagesRouter.delete('/', (req, res) => {
-  console.log(req.data.id);
-  
-  // Message.destroy({
-  //   where: { 
-  //     id: req.data.id 
-  //   }
-  // })
-  //   .then(() => {
-  //     res.sendStatus(200);
-  //   })
-  //   .catch((err) => {
-  //     console.err(err);
-  //     res.sendStatus(500);
-  //   });
+  Message.destroy({
+    where: { 
+      id: req.body.id 
+    }
+  })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.err(err);
+      res.sendStatus(500);
+    });
 });
 
 
