@@ -12,7 +12,7 @@ const SendMessage = (props) => {
   const send = () => {
     axios.post('http://localhost:8000/messages', {
       senderId: props.user.id,
-      recipientId: props.match.id,
+      recipientId: props.recipient.id,
       message: message
     })
       .then(() => {

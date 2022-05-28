@@ -26,7 +26,11 @@ const Messages = (props) => {
       }
     })
       .then(() => {
-        axios.get('http://localhost:8000/messages')
+        axios.get('http://localhost:8000/messages', {
+          params: {
+            recipientId: props.user.id
+          }
+        })
           .then((results) => {
             setMessages(results.data);
           })
@@ -43,7 +47,7 @@ const Messages = (props) => {
     <div>
       {/* <button onClick={() => setMessages('messages')}>Messages</button> */}
       <ul>
-        {messages.map((msg) => <Message msg={msg} deleteMessage={deleteMessage} />)}
+        {messages.map((msg) => <Message user={props.user} msg={msg} deleteMessage={deleteMessage} />)}
       </ul>
     </div>
   );
