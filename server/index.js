@@ -10,6 +10,7 @@ require('dotenv').config();
 require('./passport'); 
 const { matchesRouter } = require('./routes/matches.js');
 const { messagesRouter } = require('./routes/messageRouting.js');
+const { communicationsRouter } = require('./routes/communications.js');
 
 const app = express();
 app.use(session({secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: true})); // change to env variable 
@@ -31,6 +32,7 @@ app.use('/feed', require('./routes/feed.js'));
 app.use('/matches', matchesRouter);
 app.use('/listings', require('./routes/map'));
 app.use('/messages', messagesRouter);
+app.use('/communications', communicationsRouter);
 
 
 

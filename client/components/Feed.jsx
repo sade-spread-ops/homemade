@@ -20,6 +20,7 @@ const Feed = (props) => {
   const removeLessor = (email) => {
     setLessors(lessors.filter(lessor => lessor.email !== email));
   };
+  
   return (
     <div>
       { lessors.map((lessor) => 
