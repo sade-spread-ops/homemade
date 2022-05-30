@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useResolvedPath } from 'react-router';
 import axios from 'axios';
 import Lessor from './Lessor.jsx';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 
 const Feed = (props) => {
@@ -22,11 +24,16 @@ const Feed = (props) => {
   };
   
   return (
-    <div>
-      { lessors.map((lessor) => 
-        <Lessor key={lessor.id} lessor={lessor} removeLessor={removeLessor} user={props.user}/>
-      ) }
-    </div>
+    <Container sx={{
+      marginY: 5
+    }}
+    >
+      <Grid container spacing={5}>
+        { lessors.map((lessor) => 
+          <Lessor key={lessor.id} lessor={lessor} removeLessor={removeLessor} user={props.user}/>
+        )}
+      </Grid>
+    </Container>
   );
 };
 

@@ -101,22 +101,27 @@ const Map = ({ user }) => {
         <div className="map-listing-form">
           <Grid container direction={'column'} spacing={2}>
             <Grid item>
-              <TextField label="description" type="text" onChange={e => setDescription(e.target.value)} variant="outlined" required/>
+              <TextField sx={{ padding: 1 }} label="description" type="text" onChange={e => setDescription(e.target.value)} variant="outlined" required/>
             </Grid>
             <Grid item>
-              <TextField label="imageUrl" type="text" onChange={e => setImageURL(e.target.value)} variant="outlined" />
+              <TextField sx={{ padding: 1 }} label="imageUrl" type="text" onChange={e => setImageURL(e.target.value)} variant="outlined" />
             </Grid>
             <Grid item>
-              <TextField label="address" type="text" onChange={handleAddressInputChange} variant="outlined" required/>
+              <TextField sx={{ padding: 1 }} label="address" type="text" onChange={handleAddressInputChange} variant="outlined" required/>
             </Grid>
             <Grid item>
-              <TextField label="price" type="number" step="0.01" onChange={e => setPrice(e.target.value)} variant="outlined" required/>
+              <TextField sx={{ padding: 1 }} label="price" type="number" step="0.01" onChange={e => setPrice(e.target.value)} variant="outlined" required/>
             </Grid>
           </Grid>
           <div className="create-listing-btn">
-            <Button variant="contained" onClick={() => createNewListing()} color="primary">
-              Create Listing
-            </Button>
+            <Box sx={{
+              padding: 1
+            }}
+            >
+              <Button variant="contained" onClick={() => createNewListing()} color="primary">
+                Create Listing
+              </Button>
+            </Box>
           </div>
         </div>
       </Box>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Message from './Message.jsx';
+import { Container, Grid } from '@mui/material';
 
 
 const Messages = (props) => {
@@ -44,12 +45,15 @@ const Messages = (props) => {
   };
 
   return (
-    <div>
-      {/* <button onClick={() => setMessages('messages')}>Messages</button> */}
-      <ul>
+    <Container sx={{
+      marginY: 5
+    }}
+    >
+      <Grid container spacing={5}>
+        {/* <button onClick={() => setMessages('messages')}>Messages</button> */}
         {messages.map((msg) => <Message user={props.user} msg={msg} deleteMessage={deleteMessage} />)}
-      </ul>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 
