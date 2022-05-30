@@ -7,18 +7,18 @@ module.exports = {
       message: 'heyyy',
       // timeSent: Sequelize.DATE,
       senderId: 101,
-      recipientId: 105,
+      recipientId: 104,
     }, {
       id: 2,
       message: 'hello',
       // timeSent: Sequelize.DATE,
-      senderId: 103,
-      recipientId: 105,
+      senderId: 102,
+      recipientId: 104,
     }, {
       id: 1,
       message: 'What\'s up?',
-      senderId: 104,
-      recipientId: 105
+      senderId: 103,
+      recipientId: 104
     }], {});
   },
 

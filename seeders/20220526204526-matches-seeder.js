@@ -3,10 +3,13 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('matches', [{
-      matchRequestSender: 'foobar0@gmail.com',
-      matchRequestReceiver: 'velouriagreen@gmail.com'
+      matchRequestSender: 'velouriagreen@gmail.com',
+      matchRequestReceiver: 'raymondjjeong@gmail.com'
     }, {
-      matchRequestSender: 'foobar0@gmail.com',
+      matchRequestSender: 'rjreed1@gmail.com',
+      matchRequestReceiver: 'raymondjjeong@gmail.com'
+    }, {
+      matchRequestSender: 'rysmith504@gmail.com',
       matchRequestReceiver: 'raymondjjeong@gmail.com'
     }], {});
   },
