@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 const SendMessage = (props) => {
 
@@ -25,10 +27,28 @@ const SendMessage = (props) => {
 
   return (
     <div>
-      <textarea onChange={(event) => handleChange(event)}></textarea>
+      <Box sx={{
+        marginY: 1
+      }}
+      >
+        <textarea rows="4" cols="50" onChange={(event) => handleChange(event)}></textarea>
+      </Box>
       <br></br>
-      <button 
-        onClick={() => send()}>Send Message</button>
+      <Box 
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Button 
+          onClick={() => send()}
+          variant='outlined'
+          sx={{ color: 'white', backgroundColor: '#2979ff', borderColor: 'black', fontfamily: 'Roboto' }}
+        >
+          Send Message
+        </Button>
+      </Box>
     </div>
   );
 };
